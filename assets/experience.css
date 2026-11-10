@@ -244,6 +244,9 @@ button:active,.primary-action:active,.secondary-action:active{transform:translat
 @media(max-width:780px){
  :root{--header-height:64px}.page-shell{width:calc(100% - 36px)}.header-inner{min-height:var(--header-height);grid-template-columns:minmax(0,1fr) auto;gap:16px}.header-tools{grid-column:2}.brand span{display:none}
  #primary-navigation{grid-column:1/-1;gap:0;background:var(--paper);border:1px solid var(--line);color:var(--ink);margin-bottom:10px;padding:8px}#primary-navigation a{padding:10px 14px}
+ html:not(.has-js) .site-header{position:relative;height:auto}
+ html:not(.has-js) .header-inner{padding-top:10px;row-gap:10px}
+ html:not(.has-js) #primary-navigation{position:static;grid-row:2}
  .editorial-hero{min-height:max(600px,80svh);padding:112px 24px 96px}.studio-visual img{object-position:52% center}.editorial-hero h1{font-size:44px}.editorial-hero h1>span{font-size:22px}.hero-edition{font-size:10px;margin-bottom:32px}.editorial-hero .professional-position{font-size:16px;margin-top:28px}.editorial-hero .professional-intro{font-size:15px;line-height:2}
  .professional-work{padding-block:54px 0}.professional-section-heading,.section-flag{align-items:start;gap:20px;flex-wrap:wrap}.professional-section-heading h2,.section-flag h2{font-size:27px}.section-more{font-size:13px}.reference-flag-note{font-size:14px}.editorial-categories{gap:2px 20px;margin-bottom:42px;padding-block:10px}.editorial-categories a{font-size:13px;flex:1 1 40%;gap:10px}
  .professional-group>.editorial-group-heading{grid-template-columns:30px minmax(0,1fr);padding-block:20px 24px}.editorial-group-heading h3{font-size:23px}.editorial-group-heading>a{grid-column:2}.professional-group{margin-bottom:54px}
@@ -480,9 +483,9 @@ html[data-theme=dark] .case-chapter{border-color:var(--line)}
 @media print{.cosmic-stage,.cosmic-orbits,.cosmic-toolbar,.cosmic-category-nav,.cosmic-epoch,.cosmic-art-note{display:none!important}.cosmic-hero{height:auto;background:none;color:#111}.cosmic-intro{position:static;padding:30px 0}.cosmic-intro h1,.cosmic-intro p{color:#111}}
 
 /* The fallback poster is an actual frame of this scene, not a project photograph. */
-[data-scene=paused] .cosmic-static,[data-scene=loading] .cosmic-static,[data-scene=fallback] .cosmic-static,html:not(.has-js) .cosmic-static{background:#080b0f url('/assets/cosmic/orbital-poster.webp') center/cover no-repeat}
+[data-scene=paused] .cosmic-static,[data-scene=loading] .cosmic-static,[data-scene=fallback] .cosmic-static,html:not(.has-js) .cosmic-static{background:#080b0f url('/assets/cosmic/orbital-scene-20261110.webp') center/cover no-repeat}
 [data-scene=paused] .cosmic-static i,[data-scene=loading] .cosmic-static i,[data-scene=fallback] .cosmic-static i,html:not(.has-js) .cosmic-static i{display:none}
-@media(max-width:800px){[data-scene=paused] .cosmic-static,[data-scene=loading] .cosmic-static,[data-scene=fallback] .cosmic-static,html:not(.has-js) .cosmic-static{background-image:url('/assets/cosmic/orbital-poster-mobile.webp');background-position:70% center}}
+@media(max-width:800px){[data-scene=paused] .cosmic-static,[data-scene=loading] .cosmic-static,[data-scene=fallback] .cosmic-static,html:not(.has-js) .cosmic-static{background-image:url('/assets/cosmic/orbital-scene-mobile-20261110.webp');background-position:70% center}}
 
 /* Intrinsic text flow keeps enlarged text separate from the scene controls. */
 .cosmic-hero{height:auto;min-height:max(820px,100svh)}

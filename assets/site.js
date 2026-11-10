@@ -1,6 +1,6 @@
-import { initGalleries } from './gallery.mjs?v=ca7cd919cc3467e1';
-import { initFolio } from './folio.mjs?v=ca7cd919cc3467e1';
-import { initReadingState } from './reading-state.mjs?v=ca7cd919cc3467e1';
+import { initGalleries } from './gallery.mjs?v=db7c7da8fb7dbeeb';
+import { initFolio } from './folio.mjs?v=db7c7da8fb7dbeeb';
+import { initReadingState } from './reading-state.mjs?v=db7c7da8fb7dbeeb';
 
 const lifetime = new AbortController();
 // Secondary scene controls stay available without occupying the main reading path.
