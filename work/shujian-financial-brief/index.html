@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f2" data-theme-color>
+  <meta name="description" content="将财报指标、来源与人工复核接入简报流程。">
+  <meta property="og:title" content="数鉴｜AI 财报简报引擎｜张熙作品集">
+  <meta property="og:description" content="将财报指标、来源与人工复核接入简报流程。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+
+  <title>数鉴｜AI 财报简报引擎｜张熙作品集</title>
+  <script>(function initializeTheme(){
+  const root=document.documentElement;
+  let choice=null;
+  try{const saved=localStorage.getItem('zhangxi-theme-reference');if(saved==='light'||saved==='dark')choice=saved;}catch{}
+  if(choice)root.dataset.themeChoice=choice;else delete root.dataset.themeChoice;
+  root.dataset.theme=choice||'dark';
+  document.querySelector('[data-theme-color]')?.setAttribute('content',root.dataset.theme==='dark'?'#080b0f':'#f7f7f2');
+})();</script>
+
+  <link rel="preload" as="font" href="/assets/fonts/barlow-condensed-600.woff2" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23080b0e'/%3E%3Cpath d='M15 18h34v7L26 41h23v7H15v-7l23-16H15z' fill='%23f7f7f2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/assets/site.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/folio.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/media.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/refine.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/experience.css?v=cb7bd6f2f8e58327">
+
+  <script type="module" src="/assets/site.js?v=cb7bd6f2f8e58327" data-project-module="/assets/runtime/project-viewer-WH2IDI5K.js"></script>
+  <link rel="canonical" href="https://michalflowers245-alt.github.io/work/shujian-financial-brief/">
+  <meta property="og:url" content="https://michalflowers245-alt.github.io/work/shujian-financial-brief/">
+  <meta property="og:site_name" content="张熙作品集">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="数鉴｜AI 财报简报引擎｜张熙作品集">
+  <meta name="twitter:description" content="将财报指标、来源与人工复核接入简报流程。">
+  <meta property="og:image" content="https://michalflowers245-alt.github.io/assets/cosmic/portfolio-share.jpg">
+  <meta property="og:image:width" content="1440">
+  <meta property="og:image:height" content="1000">
+  <meta property="og:image:alt" content="张熙 · 交互项目星图，实时3D概念场景">
+  <meta name="twitter:image" content="https://michalflowers245-alt.github.io/assets/cosmic/portfolio-share.jpg">
+  <meta name="twitter:image:alt" content="张熙 · 交互项目星图，实时3D概念场景">
+</head>
+<body class="page-work">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="site-header">
+    <div class="header-inner page-shell">
+      <a class="brand" href="/" aria-label="返回首页"><strong>张熙</strong><span>ZHANG XI</span></a>
+      <nav id="primary-navigation" aria-label="主导航">
+        <a href="/">首页</a><a href="/work/" aria-current="page">作品</a><a href="/resume/">项目经历</a><a href="/about/">关于我</a>
+      </nav>
+      <div class="header-tools"><a class="header-contact" href="/#contact">联系我 ↗</a>
+        <button class="theme-toggle icon-button" type="button" aria-label="切换为深色主题" title="切换明暗主题"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><path d="M12 4.5v15a7.5 7.5 0 0 0 0-15Z" fill="currentColor" stroke="none"/></svg></button>
+        <button class="menu-toggle icon-button" type="button" aria-label="打开导航" aria-controls="primary-navigation" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <script>(function initializeShell(){
+  const root=document.documentElement;
+  const menu=document.querySelector('.menu-toggle'), nav=document.querySelector('#primary-navigation'),theme=document.querySelector('.theme-toggle');
+  const compact=matchMedia('(max-width:780px)'),systemTheme=matchMedia('(prefers-color-scheme: dark)');
+  let choice=['light','dark'].includes(root.dataset.themeChoice)?root.dataset.themeChoice:null;
+  let lastStoredChoice=choice,memoryOnlyChoice=false;
+  const syncTheme=()=>{const dark=root.dataset.theme==='dark';theme.setAttribute('aria-label',dark?'切换为浅色主题':'切换为深色主题');document.querySelector('[data-theme-color]')?.setAttribute('content',dark?'#080b0f':'#f7f7f2');};
+  const applyTheme=()=>{if(choice)root.dataset.themeChoice=choice;else delete root.dataset.themeChoice;root.dataset.theme=choice||'dark';syncTheme();};
+  const refreshStoredTheme=()=>{
+    let saved;
+    try{const value=localStorage.getItem('zhangxi-theme-reference');saved=value==='light'||value==='dark'?value:null;}catch{applyTheme();return;}
+    // A returned BFCache page adopts newer persisted choices. A failed local
+    // write keeps its in-memory choice unless a different valid choice appears.
+    if(!memoryOnlyChoice||(saved&&saved!==lastStoredChoice)){choice=saved;memoryOnlyChoice=false;}
+    lastStoredChoice=saved;applyTheme();
+  };
+  const menuOpen=()=>menu.getAttribute('aria-expanded')==='true';
+  const firstNavLink=()=>nav.querySelector('a[href]');
+  let lastFocused=null,wasCompact=compact.matches;
+  const setMenu=(open,restore=false)=>{
+    // Only reclaim focus when closing the region which still owns it.
+    const returnFocus=!open&&compact.matches&&(restore||nav.contains(document.activeElement));
+    if(returnFocus)menu.focus({preventScroll:true});
+    menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'关闭导航':'打开导航');
+    nav.toggleAttribute('data-open',open);if(open)nav.scrollTop=0;
+  };
+  theme.addEventListener('click',()=>{choice=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('zhangxi-theme-reference',choice);lastStoredChoice=choice;memoryOnlyChoice=false;}catch{memoryOnlyChoice=true;}applyTheme();});
+  systemTheme.addEventListener('change',()=>{if(!choice)applyTheme();});
+  window.addEventListener('pageshow',refreshStoredTheme);
+  window.addEventListener('storage',event=>{if(event.key===null||event.key==='zhangxi-theme-reference')refreshStoredTheme();});
+  menu.addEventListener('click',event=>{
+    const open=!menuOpen();setMenu(open);
+    // Keyboard / assistive activation enters the disclosure; pointer opening does not steal focus.
+    if(open&&event.detail===0)firstNavLink()?.focus({preventScroll:true});
+  });
+  menu.addEventListener('keydown',event=>{
+    // Also support switching from a pointer-opened disclosure to keyboard navigation.
+    if(event.key==='Tab'&&!event.shiftKey&&menuOpen()){
+      event.preventDefault();firstNavLink()?.focus({preventScroll:true});
+    }
+  });
+  nav.addEventListener('click',event=>{
+    if(event.target.closest('a')&&event.button===0&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey)setMenu(false);
+  });
+  document.addEventListener('focusin',event=>{
+    lastFocused=event.target;
+    // This is a non-modal disclosure: forward and reverse Tab may leave it normally.
+    if(menuOpen()&&!nav.contains(event.target)&&event.target!==menu)setMenu(false);
+  });
+  document.addEventListener('focusout',event=>{
+    // Preserve the owner when CSS hides it, regardless of media-query/blur order.
+    // A move from a visible control to blank content is not a resize focus request.
+    if(!event.relatedTarget&&compact.matches===wasCompact&&event.target.getClientRects().length)lastFocused=null;
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&menuOpen()){event.preventDefault();setMenu(false,true);}
+  });
+  document.addEventListener('click',event=>{if(!event.target.closest('.site-header')&&menuOpen())setMenu(false);});
+  compact.addEventListener('change',()=>{
+    const active=document.activeElement===document.body?lastFocused:document.activeElement;
+    const toMenu=compact.matches&&nav.contains(active),toNav=!compact.matches&&active===menu;
+    wasCompact=compact.matches;setMenu(false);
+    if(toMenu)menu.focus({preventScroll:true});else if(toNav)firstNavLink()?.focus({preventScroll:true});
+  });applyTheme();root.classList.add('has-js');
+})();</script>
+  <main id="main-content"><article class="project-detail page-shell" data-case-reader>
+    <nav class="detail-breadcrumb" aria-label="项目位置"><a href="/work/">作品集</a><span aria-hidden="true">/</span><a href="/work/#product">技术产品</a></nav>
+
+    <header class="detail-hero professional-detail-hero without-documentary-media has-concept-visual">
+      <div class="detail-heading"><div class="detail-meta"><span class="project-type">企业 AI · 管理简报</span><time>2026.05 — 2026.06</time></div><h1>数鉴｜AI 财报简报引擎</h1><p class="detail-role"><span>项目角色</span>产品负责人</p><p class="detail-intro">将财报指标、来源与人工复核接入简报流程。</p><div class="case-shortcuts"><a class="secondary-action" data-evidence-link href="#case-shujian-financial-brief-5">查看项目过程与交付 <span aria-hidden="true">↓</span></a></div></div><figure class="project-orbit-hero" data-project-art="shujian-financial-brief" data-cover-kind="concept"><div class="project-art-stage"><picture><img src="/assets/project-covers/cosmic-shujian-financial-brief-960.webp" srcset="/assets/project-covers/cosmic-shujian-financial-brief-480.webp 480w, /assets/project-covers/cosmic-shujian-financial-brief-960.webp 960w, /assets/project-covers/cosmic-shujian-financial-brief-1440.webp 1440w" sizes="(max-width:780px) 92vw, 540px" width="960" height="720" alt="数鉴｜AI 财报简报引擎3D 概念封面：透明指标柱阵与校准星盘，表达财报指标核验。" style="--cover-focus:50% 50%" loading="lazy" decoding="async"></picture><div data-project-canvas></div><span class="project-art-coordinate" aria-hidden="true">PRODUCT / 07</span></div><figcaption><span>3D 概念封面 · 项目意象</span><div class="project-art-controls"><button type="button" data-project-activate hidden>旋转作品 ↗</button><button type="button" data-project-reset hidden>复位</button></div></figcaption><p data-project-art-status role="status" aria-live="polite"></p></figure>
+    </header>
+    <section class="case-brief professional-brief" aria-label="项目摘要"><dl class="case-summary-grid"><div class="summary-problem"><dt>解决什么问题</dt><dd>企业财报材料信息量大，管理者需要快速理解变化与风险；普通 AI 摘要难以说明数据来源，也难以进入严谨的复核流程。</dd></div><div><dt>我的职责</dt><dd>需求框架与 Demo 协作</dd></div><div><dt>如何推进</dt><dd>财报输入 → 指标提取 → 来源与证据关联 → 人工复核 → 管理简报方案。</dd></div><div><dt>形成的交付</dt><dd>财报到管理简报的需求框架与 Demo；指标提取、来源关联和复核验证。</dd></div><div class="summary-stage"><dt>当前阶段</dt><dd><strong>产品方案 · 阶段验证</strong><span>验证结果仅对应报告所列测试集，不表示所有财报均达到相同准确率。</span></dd></div></dl></section>
+    <div class="case-reading"><nav class="case-contents" aria-label="本项目内容目录" data-case-toc><p class="eyebrow">阅读目录</p><button type="button" data-case-toc-toggle aria-expanded="true" aria-controls="case-toc-links" hidden><span>目录 · <span data-case-toc-current>项目与问题</span></span><span data-case-toc-action aria-hidden="true">展开</span></button><ol id="case-toc-links"><li><a href="#case-shujian-financial-brief-1"><span aria-hidden="true">01</span>项目与问题</a></li><li><a href="#case-shujian-financial-brief-2"><span aria-hidden="true">02</span>本人角色</a></li><li><a href="#case-shujian-financial-brief-3"><span aria-hidden="true">03</span>目标与关键判断</a></li><li><a href="#case-shujian-financial-brief-4"><span aria-hidden="true">04</span>推进流程</a></li><li><a href="#case-shujian-financial-brief-5"><span aria-hidden="true">05</span>核心产品或机制</a></li><li><a href="#case-shujian-financial-brief-6"><span aria-hidden="true">06</span>代表案例与材料</a></li><li><a href="#case-shujian-financial-brief-7"><span aria-hidden="true">07</span>交付结果与当前阶段</a></li><li><a href="#case-shujian-financial-brief-8"><span aria-hidden="true">08</span>复盘与下一步</a></li></ol><a class="reader-back" href="/work/" data-reading-back>返回作品集 <span aria-hidden="true">↗</span></a></nav>
+    <div class="case-chapters"><section class="case-chapter" id="case-shujian-financial-brief-1" tabindex="-1" aria-labelledby="case-shujian-financial-brief-1-title"><p class="chapter-index latin">01</p><h2 id="case-shujian-financial-brief-1-title">项目与问题</h2><h3 class="chapter-topic">从财报阅读到管理层简报</h3><p>2026 年 5—6 月，我基于三一重工 AI 实验室相关需求与制造企业场景，参与数鉴方案设计和 Demo 打磨。财报中的数字、年份、单位与业务口径分散在文字、表格和图表里；产品目标是把它们整理为有来源、可复核的管理简报，帮助财务与管理者理解经营变化。</p></section><section class="case-chapter" id="case-shujian-financial-brief-2" tabindex="-1" aria-labelledby="case-shujian-financial-brief-2-title"><p class="chapter-index latin">02</p><h2 id="case-shujian-financial-brief-2-title">本人角色</h2><h3 class="chapter-topic">我的角色与团队交付</h3><p>我承担产品负责人角色，负责需求与场景拆解、工作流和分析框架设计、方案表达及 Demo 协作，把企业要求转成可验证的条件：数字如何保留证据、何时人工复核、哪些事实可以进入正式输出。图表识别方法、评测集和代码测试由团队共同交付。</p></section><section class="case-chapter" id="case-shujian-financial-brief-3" tabindex="-1" aria-labelledby="case-shujian-financial-brief-3-title"><p class="chapter-index latin">03</p><h2 id="case-shujian-financial-brief-3-title">目标与关键判断</h2><h3 class="chapter-topic">关键问题是数字与对象的关系</h3><p>OCR 读到数字，不等于正确关联年份、系列和坐标轴；关系绑定错误，会直接影响经营比较。我把来源、结构与复核放在摘要之前：结论须能回到原页、图表和数字，模型候选经过证据与准入检查，缺依据或有冲突的内容交由人工处理。</p></section><section class="case-chapter" id="case-shujian-financial-brief-4" tabindex="-1" aria-labelledby="case-shujian-financial-brief-4-title"><p class="chapter-index latin">04</p><h2 id="case-shujian-financial-brief-4-title">推进流程</h2><h3 class="chapter-topic">从输入到简报的处理流程</h3><ol class="case-steps"><li>输入财报页面与图表裁片，保留原始文件、页码和图表位置。</li><li>提取文字、数值、坐标轴、图例和视觉标记，重建类别、系列、数值与单位的关联。</li><li>通过规则检查、风险判断和审计记录筛选可进入正式输出的事实；有歧义的结果进入复核流程。</li><li>产品规划将可追溯事实组织为指标变化、风险信息和管理简报，由使用者检查后使用。</li></ol></section><section class="case-chapter" id="case-shujian-financial-brief-5" tabindex="-1" aria-labelledby="case-shujian-financial-brief-5-title"><p class="chapter-index latin">05</p><h2 id="case-shujian-financial-brief-5-title">核心产品或机制</h2><h3 class="chapter-topic">产品方案与技术交付</h3><aside class="case-path" data-case-path="shujian-financial-brief" data-path-kind="product" aria-label="数字先关联证据，再进入输出"><h3>数字先关联证据，再进入输出</h3><ol><li><strong>保留原件</strong><span>输入财报页面与图表裁片，同时保留页码和位置，供结果回查。</span></li><li><strong>关联复核</strong><span>将数值与类别、系列和单位对应，冲突或证据不足的候选进入复核。</span></li><li><strong>输出事实</strong><span>满足准入规则的事实进入正式输出，为后续管理简报提供依据。</span></li></ol><p class="path-note">我负责产品流程与 Demo 协作；材料为项目阶段报告的原文摘页，完整管理简报仍待实现。</p></aside><p>现有交付包括产品方案、图表结构重建方法、正式事实准入规则、严格标注评测集与阶段汇报。方案说明企业使用流程，报告呈现抽取方法和错误归因，共同支撑 Demo；技术验证集中在图表事实抽取，完整管理简报仍是后续目标。</p></section><section class="case-chapter" id="case-shujian-financial-brief-6" tabindex="-1" aria-labelledby="case-shujian-financial-brief-6-title"><p class="chapter-index latin">06</p><h2 id="case-shujian-financial-brief-6-title">代表案例与材料</h2><h3 class="chapter-topic">案例：划定正式评测范围</h3><p>2026 年 5 月 12 日阶段报告采用严格审校的 v15 金标准：开发集为 39 张图、402 个事实点；正式测试为 16 张图、179 个事实点。原清单中的一张漏斗图、三个事实点不属于当时支持的正式图表类型，单独排除。</p><p>候选层尽量找到数字，正式输出层保证事实与证据对应。不支持的图表不能强行回答后混入统计，这个范围与分数同样重要。</p></section><section class="case-chapter" id="case-shujian-financial-brief-7" tabindex="-1" aria-labelledby="case-shujian-financial-brief-7-title"><p class="chapter-index latin">07</p><h2 id="case-shujian-financial-brief-7-title">交付结果与当前阶段</h2><h3 class="chapter-topic">阶段结果与验证口径</h3><aside class="case-key-facts" id="case-data-shujian-financial-brief" aria-label="阶段记录"><p>阶段记录</p><dl class="detail-facts"><div class="detail-fact"><dt>流程设计</dt><dd>端到端</dd></div><div class="detail-fact"><dt>数据来源</dt><dd>可追溯</dd></div><div class="detail-fact"><dt>风险边界</dt><dd>人工复核</dd></div></dl></aside><p>报告记载：缓存回归覆盖的严格金标准集为 16 张图、179 个事实点，正式输出覆盖率与精确率均为 100%；另有 71 项单元测试通过。事实输出指标与代码测试数量分别统计。</p><p>100% 仅对应经过证据检查与准入筛选的正式事实，不涵盖所有模型候选或未知财报。报告保留候选层、结构重建层与正式层的差异，用于定位错误。</p><p class="case-evidence"><span>材料说明</span>历史阶段汇报第 7—9 页定义数据集与指标，第 11 页说明适用范围，第 13 页记载单元测试。</p></section><section class="case-chapter" id="case-shujian-financial-brief-8" tabindex="-1" aria-labelledby="case-shujian-financial-brief-8-title"><p class="chapter-index latin">08</p><h2 id="case-shujian-financial-brief-8-title">复盘与下一步</h2><h3 class="chapter-topic">当前阶段与下一步</h3><p>数鉴处于产品方案、Demo 与图表事实抽取验证阶段。下一步扩展行业、复杂版式和低清晰度样本，把正式事实接入完整简报，再由使用者用真实新财报复核。相关企业场景不代表正式采购，目前未确认生产部署或完整简报签收。</p><p>企业经营与管理情报库提供相关研究背景，尚未作为数鉴功能接入。</p></section></div>
+    </div>
+
+
+    <div class="detail-back"><a class="primary-action" href="/work/" data-reading-back>返回完整作品集 <span>→</span></a><a href="/resume/">查看项目经历</a><a href="mailto:michalflowers245@gmail.com">联系交流</a></div>
+    <section class="related-work"><header class="section-flag"><div><h2>继续浏览</h2></div><a class="section-more" href="/work/">全部项目 →</a></header><div class="project-grid"><article class="project-card related-card" id="card-kuaizhai-web-clipper-01" data-project="kuaizhai-web-clipper"><a class="related-card-link" id="card-kuaizhai-web-clipper-01-title" href="/work/kuaizhai-web-clipper/" data-project-link="kuaizhai-web-clipper"><h3>AI Web Clipper｜快摘 <span aria-hidden="true">↗</span></h3><p>比较另一类信息整理任务中的正文处理、来源保留与导出。</p></a></article><article class="project-card related-card" id="card-education-tools-02" data-project="education-tools"><a class="related-card-link" id="card-education-tools-02-title" href="/work/education-tools/" data-project-link="education-tools"><h3>物理工作台与真题分析工具链 <span aria-hidden="true">↗</span></h3><p>继续看专业材料处理中的原始出处、工具输出和人工确认。</p></a></article></div></section>
+  </article></main>
+  <footer class="site-footer site-footer-compact">
+    <div class="page-shell footer-inner">
+
+      <div class="footer-links"><a href="/work/">完整作品集</a><a href="/resume/">项目经历</a><a href="mailto:michalflowers245@gmail.com">michalflowers245@gmail.com</a></div>
+    </div>
+    <div class="footer-bottom page-shell"><span>张熙 · ZHANG XI</span><span>总办助理 · AI应用与资源协同</span><a href="#main-content">回到顶部 ↑</a></div>
+  </footer>
+
+</body>
+</html>

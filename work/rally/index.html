@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f2" data-theme-color>
+  <meta name="description" content="连接点场需求、活动主办方与众筹参与。">
+  <meta property="og:title" content="Mazi 活动众筹平台｜张熙作品集">
+  <meta property="og:description" content="连接点场需求、活动主办方与众筹参与。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+
+  <title>Mazi 活动众筹平台｜张熙作品集</title>
+  <script>(function initializeTheme(){
+  const root=document.documentElement;
+  let choice=null;
+  try{const saved=localStorage.getItem('zhangxi-theme-reference');if(saved==='light'||saved==='dark')choice=saved;}catch{}
+  if(choice)root.dataset.themeChoice=choice;else delete root.dataset.themeChoice;
+  root.dataset.theme=choice||'dark';
+  document.querySelector('[data-theme-color]')?.setAttribute('content',root.dataset.theme==='dark'?'#080b0f':'#f7f7f2');
+})();</script>
+
+  <link rel="preload" as="font" href="/assets/fonts/barlow-condensed-600.woff2" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23080b0e'/%3E%3Cpath d='M15 18h34v7L26 41h23v7H15v-7l23-16H15z' fill='%23f7f7f2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/assets/site.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/folio.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/media.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/refine.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/experience.css?v=cb7bd6f2f8e58327">
+
+  <script type="module" src="/assets/site.js?v=cb7bd6f2f8e58327" data-project-module="/assets/runtime/project-viewer-WH2IDI5K.js"></script>
+  <link rel="canonical" href="https://michalflowers245-alt.github.io/work/rally/">
+  <meta property="og:url" content="https://michalflowers245-alt.github.io/work/rally/">
+  <meta property="og:site_name" content="张熙作品集">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mazi 活动众筹平台｜张熙作品集">
+  <meta name="twitter:description" content="连接点场需求、活动主办方与众筹参与。">
+  <meta property="og:image" content="https://michalflowers245-alt.github.io/assets/cosmic/portfolio-share.jpg">
+  <meta property="og:image:width" content="1440">
+  <meta property="og:image:height" content="1000">
+  <meta property="og:image:alt" content="张熙 · 交互项目星图，实时3D概念场景">
+  <meta name="twitter:image" content="https://michalflowers245-alt.github.io/assets/cosmic/portfolio-share.jpg">
+  <meta name="twitter:image:alt" content="张熙 · 交互项目星图，实时3D概念场景">
+</head>
+<body class="page-work">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="site-header">
+    <div class="header-inner page-shell">
+      <a class="brand" href="/" aria-label="返回首页"><strong>张熙</strong><span>ZHANG XI</span></a>
+      <nav id="primary-navigation" aria-label="主导航">
+        <a href="/">首页</a><a href="/work/" aria-current="page">作品</a><a href="/resume/">项目经历</a><a href="/about/">关于我</a>
+      </nav>
+      <div class="header-tools"><a class="header-contact" href="/#contact">联系我 ↗</a>
+        <button class="theme-toggle icon-button" type="button" aria-label="切换为深色主题" title="切换明暗主题"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><path d="M12 4.5v15a7.5 7.5 0 0 0 0-15Z" fill="currentColor" stroke="none"/></svg></button>
+        <button class="menu-toggle icon-button" type="button" aria-label="打开导航" aria-controls="primary-navigation" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <script>(function initializeShell(){
+  const root=document.documentElement;
+  const menu=document.querySelector('.menu-toggle'), nav=document.querySelector('#primary-navigation'),theme=document.querySelector('.theme-toggle');
+  const compact=matchMedia('(max-width:780px)'),systemTheme=matchMedia('(prefers-color-scheme: dark)');
+  let choice=['light','dark'].includes(root.dataset.themeChoice)?root.dataset.themeChoice:null;
+  let lastStoredChoice=choice,memoryOnlyChoice=false;
+  const syncTheme=()=>{const dark=root.dataset.theme==='dark';theme.setAttribute('aria-label',dark?'切换为浅色主题':'切换为深色主题');document.querySelector('[data-theme-color]')?.setAttribute('content',dark?'#080b0f':'#f7f7f2');};
+  const applyTheme=()=>{if(choice)root.dataset.themeChoice=choice;else delete root.dataset.themeChoice;root.dataset.theme=choice||'dark';syncTheme();};
+  const refreshStoredTheme=()=>{
+    let saved;
+    try{const value=localStorage.getItem('zhangxi-theme-reference');saved=value==='light'||value==='dark'?value:null;}catch{applyTheme();return;}
+    // A returned BFCache page adopts newer persisted choices. A failed local
+    // write keeps its in-memory choice unless a different valid choice appears.
+    if(!memoryOnlyChoice||(saved&&saved!==lastStoredChoice)){choice=saved;memoryOnlyChoice=false;}
+    lastStoredChoice=saved;applyTheme();
+  };
+  const menuOpen=()=>menu.getAttribute('aria-expanded')==='true';
+  const firstNavLink=()=>nav.querySelector('a[href]');
+  let lastFocused=null,wasCompact=compact.matches;
+  const setMenu=(open,restore=false)=>{
+    // Only reclaim focus when closing the region which still owns it.
+    const returnFocus=!open&&compact.matches&&(restore||nav.contains(document.activeElement));
+    if(returnFocus)menu.focus({preventScroll:true});
+    menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'关闭导航':'打开导航');
+    nav.toggleAttribute('data-open',open);if(open)nav.scrollTop=0;
+  };
+  theme.addEventListener('click',()=>{choice=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('zhangxi-theme-reference',choice);lastStoredChoice=choice;memoryOnlyChoice=false;}catch{memoryOnlyChoice=true;}applyTheme();});
+  systemTheme.addEventListener('change',()=>{if(!choice)applyTheme();});
+  window.addEventListener('pageshow',refreshStoredTheme);
+  window.addEventListener('storage',event=>{if(event.key===null||event.key==='zhangxi-theme-reference')refreshStoredTheme();});
+  menu.addEventListener('click',event=>{
+    const open=!menuOpen();setMenu(open);
+    // Keyboard / assistive activation enters the disclosure; pointer opening does not steal focus.
+    if(open&&event.detail===0)firstNavLink()?.focus({preventScroll:true});
+  });
+  menu.addEventListener('keydown',event=>{
+    // Also support switching from a pointer-opened disclosure to keyboard navigation.
+    if(event.key==='Tab'&&!event.shiftKey&&menuOpen()){
+      event.preventDefault();firstNavLink()?.focus({preventScroll:true});
+    }
+  });
+  nav.addEventListener('click',event=>{
+    if(event.target.closest('a')&&event.button===0&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey)setMenu(false);
+  });
+  document.addEventListener('focusin',event=>{
+    lastFocused=event.target;
+    // This is a non-modal disclosure: forward and reverse Tab may leave it normally.
+    if(menuOpen()&&!nav.contains(event.target)&&event.target!==menu)setMenu(false);
+  });
+  document.addEventListener('focusout',event=>{
+    // Preserve the owner when CSS hides it, regardless of media-query/blur order.
+    // A move from a visible control to blank content is not a resize focus request.
+    if(!event.relatedTarget&&compact.matches===wasCompact&&event.target.getClientRects().length)lastFocused=null;
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&menuOpen()){event.preventDefault();setMenu(false,true);}
+  });
+  document.addEventListener('click',event=>{if(!event.target.closest('.site-header')&&menuOpen())setMenu(false);});
+  compact.addEventListener('change',()=>{
+    const active=document.activeElement===document.body?lastFocused:document.activeElement;
+    const toMenu=compact.matches&&nav.contains(active),toNav=!compact.matches&&active===menu;
+    wasCompact=compact.matches;setMenu(false);
+    if(toMenu)menu.focus({preventScroll:true});else if(toNav)firstNavLink()?.focus({preventScroll:true});
+  });applyTheme();root.classList.add('has-js');
+})();</script>
+  <main id="main-content"><article class="project-detail page-shell" data-case-reader>
+    <nav class="detail-breadcrumb" aria-label="项目位置"><a href="/work/">作品集</a><span aria-hidden="true">/</span><a href="/work/#product">技术产品</a></nav>
+    <p class="project-branch">同一产品，两种阅读视角：<a href="#case-rally-4" data-evidence-link>三方产品流程</a><a href="#case-rally-6" data-evidence-link>尾款失败与出票门槛</a></p>
+    <header class="detail-hero professional-detail-hero without-documentary-media has-concept-visual">
+      <div class="detail-heading"><div class="detail-meta"><span class="project-type">活动众筹与票务 · 原 Rally</span><time>项目持续迭代</time></div><h1>Mazi 活动众筹平台</h1><p class="detail-role"><span>项目角色</span>产品方案与技术协作</p><p class="detail-intro">连接点场需求、活动主办方与众筹参与。</p><div class="case-shortcuts"><a class="secondary-action" data-evidence-link href="#case-rally-5">查看项目过程与交付 <span aria-hidden="true">↓</span></a><a class="secondary-action" href="https://mazi-us.com/" target="_blank" rel="noopener noreferrer">打开 Mazi 在线网站 <span aria-hidden="true">↗</span></a></div></div><figure class="project-orbit-hero" data-project-art="rally" data-cover-kind="concept"><div class="project-art-stage"><picture><img src="/assets/project-covers/cosmic-rally-960.webp" srcset="/assets/project-covers/cosmic-rally-480.webp 480w, /assets/project-covers/cosmic-rally-960.webp 960w, /assets/project-covers/cosmic-rally-1440.webp 1440w" sizes="(max-width:780px) 92vw, 540px" width="960" height="720" alt="Mazi 活动众筹平台3D 概念封面：双层空间入口与票券航道，表达活动需求到参与的路径。" style="--cover-focus:50% 50%" loading="lazy" decoding="async"></picture><div data-project-canvas></div><span class="project-art-coordinate" aria-hidden="true">PRODUCT / 05</span></div><figcaption><span>3D 概念封面 · 项目意象</span><div class="project-art-controls"><button type="button" data-project-activate hidden>旋转作品 ↗</button><button type="button" data-project-reset hidden>复位</button></div></figcaption><p data-project-art-status role="status" aria-live="polite"></p></figure>
+    </header>
+    <section class="case-brief professional-brief" aria-label="项目摘要"><dl class="case-summary-grid"><div class="summary-problem"><dt>解决什么问题</dt><dd>线下活动的需求往往不确定，主办方需要提前承担组织成本，参与者也缺少明确的报名状态与价格变化信息。</dd></div><div><dt>我的职责</dt><dd>产品方案与技术协作</dd></div><div><dt>如何推进</dt><dd>点场收集需求 → 主办方承接 → 活动报名与成团 → 票券核销 → 履约及结算设计。</dd></div><div><dt>形成的交付</dt><dd>Mazi 公开网站与三方产品工程：点场承接、众筹报名、免费报名、票券、核销与履约结算。</dd></div><div class="summary-stage"><dt>当前阶段</dt><dd><strong>公开站点 · 交易待验收</strong><span>公开首页、机制说明与活动入口已可访问；点场及业务工作台需登录。本案区分线上实拍、仓库实现与历史测试，尚未验收真实收款和结算。</span></dd></div></dl></section>
+    <div class="case-reading"><nav class="case-contents" aria-label="本项目内容目录" data-case-toc><p class="eyebrow">阅读目录</p><button type="button" data-case-toc-toggle aria-expanded="true" aria-controls="case-toc-links" hidden><span>目录 · <span data-case-toc-current>项目与问题</span></span><span data-case-toc-action aria-hidden="true">展开</span></button><ol id="case-toc-links"><li><a href="#case-rally-1"><span aria-hidden="true">01</span>项目与问题</a></li><li><a href="#case-rally-2"><span aria-hidden="true">02</span>本人角色</a></li><li><a href="#case-rally-3"><span aria-hidden="true">03</span>目标与关键判断</a></li><li><a href="#case-rally-4"><span aria-hidden="true">04</span>推进流程</a></li><li><a href="#case-rally-5"><span aria-hidden="true">05</span>核心产品或机制</a></li><li><a href="#case-rally-6"><span aria-hidden="true">06</span>代表案例与材料</a></li><li><a href="#case-rally-7"><span aria-hidden="true">07</span>交付结果与当前阶段</a></li><li><a href="#case-rally-8"><span aria-hidden="true">08</span>复盘与下一步</a></li></ol><a class="reader-back" href="/work/" data-reading-back>返回作品集 <span aria-hidden="true">↗</span></a></nav>
+    <div class="case-chapters"><section class="case-chapter" id="case-rally-1" tabindex="-1" aria-labelledby="case-rally-1-title"><p class="chapter-index latin">01</p><h2 id="case-rally-1-title">项目与问题</h2><h3 class="chapter-topic">从活动想法到可承接的需求</h3><p>Mazi 面向北美本地现场活动，连接想参加活动的人、愿意承接的主办方与平台运营者。很多活动在筹备时并不知道有多少人愿意来、愿意付多少钱，而参与者也难以判断一场活动究竟只是想法，还是已经确定举办。</p><p>产品将需求表达、组织承接和票务履约接成一条链：先收集城市、活动偏好和愿付价格，再由主办方形成正式活动，通过众筹报名验证参与需求，最后进入票券与履约流程。Mazi 是当前产品名，Rally 是原项目名称，LocalLive 是部分历史文档沿用的名称。</p></section><section class="case-chapter" id="case-rally-2" tabindex="-1" aria-labelledby="case-rally-2-title"><p class="chapter-index latin">02</p><h2 id="case-rally-2-title">本人角色</h2><h3 class="chapter-topic">我的角色与协作边界</h3><p>我参与需求研究、产品方案与技术协作，把线下活动中的意向收集、价格确认、主办方承诺和现场交付，拆成参与者、主办方与平台各自的操作流程。工作重点是明确每个角色在什么状态下可以做什么，以及出现问题后由谁承接。</p><p>推进时，我将报名条件、人数与价格关系、锁单节点、付款协议、失败补缴和履约材料转成可讨论、可实现、可检查的规则，并衔接页面设计、工程实现和交付说明。前后端开发、支付服务与测试按协作交付呈现，不把全部代码归为个人独立编写。</p></section><section class="case-chapter" id="case-rally-3" tabindex="-1" aria-labelledby="case-rally-3-title"><p class="chapter-index latin">03</p><h2 id="case-rally-3-title">目标与关键判断</h2><h3 class="chapter-topic">意向、报名与成行的边界</h3><p>点场板收集“想看什么、在哪里、愿付多少”的需求；点赞、收藏和价格信号帮助主办方判断兴趣，但不是付费报名。主办方认领后，点场与正式活动关联，用户再进入清楚的参与流程。</p><p>正式活动的当前人数影响票价：工程中的众筹定价在起步人数与容量上限之间线性降价，并设置价格边界。用户的最高可接受价格低于当前报价时，进入等待路径，而不是直接当成有效付款订单。</p><p>成团与锁单也分开：满足人数条件后，仍需主办方确认举办。用户支付协议解释定金、尾款、取消与退款；活动方结算协议解释举办责任、履约材料与结算。协议内容、确认记录和服务端状态一起帮助回查用户当时接受的规则与后续处理过程。</p><p class="case-evidence"><span>材料说明</span>公开网站的机制页介绍人数越多、票价线性降低；点场承接、等待订单以及协议展示与确认记录，另由仓库实现与历史验证材料说明。</p></section><section class="case-chapter" id="case-rally-4" tabindex="-1" aria-labelledby="case-rally-4-title"><p class="chapter-index latin">04</p><h2 id="case-rally-4-title">推进流程</h2><h3 class="chapter-topic">三方流程：从点场到履约</h3><ol class="case-steps"><li>表达需求：参与者提交活动偏好、地点与愿付价格；其他用户留下支持或价格信号，主办方从点场需求中寻找可以承接的活动。</li><li>组织承接：主办方认领需求并关联正式活动，设置活动内容、人数、容量与价格条件。平台承担相应审核与运营管理。</li><li>收费报名：参与者查看当前价格、可接受上限与参与条件，确认协议并进入定金流程；达到人数条件并由主办方确认举办后，进入适用的冷静期。</li><li>锁单出票：到锁单节点、主办方确认锁单后，系统计算尾款及适用服务费，在线完成应付金额确认；付款成功的订单才能取得有效票券，而不是到现场才扣尾款。</li><li>现场与履约：主办方核销票券，活动结束后提交履约证据；平台审核通过后推进剩余票款结算。订单状态、票券状态和结算记录分别留痕。</li></ol><p>免费活动是另一条路径：用户确认报名后进入已报名与出票状态，不经过定金、尾款或资金账本。这让同一套活动组织与核销能力可以服务不同活动类型，而不是让免费报名伪装成一笔零元众筹支付。</p></section><section class="case-chapter" id="case-rally-5" tabindex="-1" aria-labelledby="case-rally-5-title"><p class="chapter-index latin">05</p><h2 id="case-rally-5-title">核心产品或机制</h2><h3 class="chapter-topic">真实界面与产品模块</h3><p>点场板以卡片展示活动需求，列出活动标题、地区、待接办状态和支持数，呈现需求内容及其当前承接状态。城市探索区域则保留纽约入口和其他城市的“即将上线”占位，让访客区分当前入口与后续扩展方向。</p><ul class="case-deliverables"><li>公开入口：品牌首页、城市探索、活动列表、众筹机制说明与观众／主办方双入口。中文与英文切换、桌面与手机布局均有实际页面。</li><li>参与者端：点场需求、支持与收藏、众筹报名、价格等待、定金与尾款、票夹和通知。需求表达与正式参与分别管理。</li><li>主办方端：认领点场、创建和编辑活动、确认成行与锁单、查看订单、现场核销、提交履约材料和查询结算。</li><li>平台端：审核主办方、点场与履约证据，管理活动，处理订单、退款、审计、通知与对账；与用户和主办方界面分开授权。</li></ul></section><section class="case-chapter" id="case-rally-6" tabindex="-1" aria-labelledby="case-rally-6-title"><p class="chapter-index latin">06</p><h2 id="case-rally-6-title">代表案例与材料</h2><h3 class="chapter-topic">异常处理与出票门槛</h3><aside class="case-path" data-case-path="rally" data-path-kind="product" aria-label="尾款失败，不直接出票"><h3>尾款失败，不直接出票</h3><ol><li><strong>记录失败</strong><span>锁单扣款失败后记录原因，订单进入补缴状态，而不是显示成功。</span></li><li><strong>保留补缴</strong><span>用户在 24 小时期限内重试；主办方区分已付款与待补缴订单。</span></li><li><strong>确认出票</strong><span>服务端确认补缴成功才生成票券；超时按规则结束补缴、不出票。</span></li></ol><p class="path-note">我参与规则与技术协作；这条路径有仓库实现及历史模拟验证，未作为本轮线上真实交易验收。</p></aside><p>尾款扣款失败后，页面需要告诉参与者下一步，而后台也必须保留真实状态。实现中，失败原因与补缴订单单独记录；页面提示成功本身不能代替服务端确认，尚未确认的订单不能提前出票。</p><p>定金失败保持未付款；支付回调需要防止重复处理，重复结算不能重复记账。活动状态与支付状态分开记录，便于发现“活动已锁单但某笔订单仍待补缴”等情况。</p><p>到现场后，核销还要核对票券所属活动、主办方权限与使用状态，防止跨活动核销和重复扫码。活动结束也不意味着自动完成所有结算，剩余票款继续受履约材料与运营审核约束。</p></section><section class="case-chapter" id="case-rally-7" tabindex="-1" aria-labelledby="case-rally-7-title"><p class="chapter-index latin">07</p><h2 id="case-rally-7-title">交付结果与当前阶段</h2><h3 class="chapter-topic">工程架构与交付</h3><aside class="case-key-facts" id="case-data-rally" aria-label="阶段记录"><p>阶段记录</p><dl class="detail-facts"><div class="detail-fact"><dt>收集需求</dt><dd>点场</dd></div><div class="detail-fact"><dt>确认参与</dt><dd>众筹</dd></div><div class="detail-fact"><dt>协作履约</dt><dd>三方</dd></div></dl></aside><p>例如，点场不是一张静态卡片：前端收集偏好和愿付价格，参与者接口记录需求与支持，主办方接口处理认领并关联正式活动。免费活动则通过独立报名与出票分支处理。这些对应关系让产品流程可以逐项追到实现，而不止停留在流程图。</p><p>本次结合 GitHub 主分支核对上述模块，仓库仍为私有，页面只呈现经整理的实现说明，不公开原始工程或配置。2026年8月28日隔离实例曾记录后端127项、前端31项测试通过；8月29日旧 Docker 实例另记录107项与29项。它们属于不同版本与环境的历史记录，不能替代当前分支的重新验收。</p><ul class="case-deliverables"><li>界面层：Next.js App Router 承接发现、点场、活动及各角色页面，配合 Tailwind 与 Zustand 管理表现和交互状态。</li><li>业务层：FastAPI 与 Pydantic 按参与者、主办方和管理员划分接口；定价、报名、支付、票券、结算与通知分别由对应服务承接。关键状态推进在服务端确认。</li><li>数据层：Supabase 承接 Postgres、身份认证与文件存储。数据库迁移、订单和支付记录、金额快照、账本及审计资料共同支撑回查，而不只保存一条“支付成功”。</li><li>交付层：产品说明、业务规则、三方前后端工程、数据库迁移、测试文件、部署清单、定时任务与运维脚本。支付回调、补缴超时、邮件重试与主动对账均有对应处理。</li></ul></section><section class="case-chapter" id="case-rally-8" tabindex="-1" aria-labelledby="case-rally-8-title"><p class="chapter-index latin">08</p><h2 id="case-rally-8-title">复盘与下一步</h2><h3 class="chapter-topic">当前阶段与验证范围</h3><p>2026年10月10日，公开首页、机制说明、活动入口与纽约城市页能够访问；匿名活动列表当时显示为空，点场板跳转登录。我另提供了已登录点场板与城市入口截图：列表中的支持数是界面状态，不作为报名或成交统计；城市占位不代表当地已经运营。线上部署与本次读取的仓库主分支尚未逐项对版，因此代码中存在某项能力，不自动表示它已在当前线上环境完整开放。</p><p>现有交接资料仍包含 Staging／MVP、测试支付与邮件演练范围。本次材料核查没有执行报名、扣款、退款、核销或结算操作，也没有新增成交量、主办方数量或收入成绩。下一步应在受控环境核对身份、两类报名路径、真实支付服务回调、票券与履约结算，再补充经过授权的完整业务案例。</p><p>这个项目体现的核心能力，是把人、规则与系统接起来：从模糊的活动兴趣，到明确的参与承诺，再到可追查的履约交付。产品与活动两种入口沿用同一案例，分别帮助读者理解实现方式和组织价值。</p></section><div class="stack-tags" aria-label="实现工具"><span>实现工具</span><span>Next.js</span><span>FastAPI</span><span>Supabase</span><span>活动流程设计</span></div><div class="case-material-links"><a class="text-link" href="https://mazi-us.com/wishes" target="_blank" rel="noopener noreferrer">查看点场板（需登录） ↗</a><a class="text-link" href="https://mazi-us.com/events" target="_blank" rel="noopener noreferrer">浏览活动入口 ↗</a></div></div>
+    </div>
+
+
+    <div class="detail-back"><a class="primary-action" href="/work/" data-reading-back>返回完整作品集 <span>→</span></a><a href="/resume/">查看项目经历</a><a href="mailto:michalflowers245@gmail.com">联系交流</a></div>
+    <section class="related-work"><header class="section-flag"><div><h2>继续浏览</h2></div><a class="section-more" href="/work/">全部项目 →</a></header><div class="project-grid"><article class="project-card related-card" id="card-xingcheng-maker-01" data-project="xingcheng-maker"><a class="related-card-link" id="card-xingcheng-maker-01-title" href="/work/xingcheng-maker/" data-project-link="xingcheng-maker"><h3>星城创客 <span aria-hidden="true">↗</span></h3><p>继续了解线下活动真实的组织、主持与后续连接工作。</p></a></article><article class="project-card related-card" id="card-opc-campaign-02" data-project="opc-campaign"><a class="related-card-link" id="card-opc-campaign-02-title" href="/work/opc-campaign/" data-project-link="opc-campaign"><h3>OPC 线下推广 <span aria-hidden="true">↗</span></h3><p>从活动产品流程，继续看体验课的参与路径与分工设计。</p></a></article></div></section>
+  </article></main>
+  <footer class="site-footer site-footer-compact">
+    <div class="page-shell footer-inner">
+
+      <div class="footer-links"><a href="/work/">完整作品集</a><a href="/resume/">项目经历</a><a href="mailto:michalflowers245@gmail.com">michalflowers245@gmail.com</a></div>
+    </div>
+    <div class="footer-bottom page-shell"><span>张熙 · ZHANG XI</span><span>总办助理 · AI应用与资源协同</span><a href="#main-content">回到顶部 ↑</a></div>
+  </footer>
+
+</body>
+</html>

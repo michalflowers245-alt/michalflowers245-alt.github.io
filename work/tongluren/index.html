@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f2" data-theme-color>
+  <meta name="description" content="组织研究、团队协作与社群服务。">
+  <meta property="og:title" content="同路人工作室｜张熙作品集">
+  <meta property="og:description" content="组织研究、团队协作与社群服务。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+
+  <title>同路人工作室｜张熙作品集</title>
+  <script>(function initializeTheme(){
+  const root=document.documentElement;
+  let choice=null;
+  try{const saved=localStorage.getItem('zhangxi-theme-reference');if(saved==='light'||saved==='dark')choice=saved;}catch{}
+  if(choice)root.dataset.themeChoice=choice;else delete root.dataset.themeChoice;
+  root.dataset.theme=choice||'dark';
+  document.querySelector('[data-theme-color]')?.setAttribute('content',root.dataset.theme==='dark'?'#080b0f':'#f7f7f2');
+})();</script>
+
+  <link rel="preload" as="font" href="/assets/fonts/barlow-condensed-600.woff2" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23080b0e'/%3E%3Cpath d='M15 18h34v7L26 41h23v7H15v-7l23-16H15z' fill='%23f7f7f2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/assets/site.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/folio.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/media.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/refine.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/experience.css?v=cb7bd6f2f8e58327">
+
+  <script type="module" src="/assets/site.js?v=cb7bd6f2f8e58327" data-project-module="/assets/runtime/project-viewer-WH2IDI5K.js"></script>
+  <link rel="canonical" href="https://michalflowers245-alt.github.io/work/tongluren/">
+  <meta property="og:url" content="https://michalflowers245-alt.github.io/work/tongluren/">
+  <meta property="og:site_name" content="张熙作品集">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="同路人工作室｜张熙作品集">
+  <meta name="twitter:description" content="组织研究、团队协作与社群服务。">
+  <meta property="og:image" content="https://michalflowers245-alt.github.io/assets/cosmic/portfolio-share.jpg">
+  <meta property="og:image:width" content="1440">
+  <meta property="og:image:height" content="1000">
+  <meta property="og:image:alt" content="张熙 · 交互项目星图，实时3D概念场景">
+  <meta name="twitter:image" content="https://michalflowers245-alt.github.io/assets/cosmic/portfolio-share.jpg">
+  <meta name="twitter:image:alt" content="张熙 · 交互项目星图，实时3D概念场景">
+</head>
+<body class="page-work">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="site-header">
+    <div class="header-inner page-shell">
+      <a class="brand" href="/" aria-label="返回首页"><strong>张熙</strong><span>ZHANG XI</span></a>
+      <nav id="primary-navigation" aria-label="主导航">
+        <a href="/">首页</a><a href="/work/" aria-current="page">作品</a><a href="/resume/">项目经历</a><a href="/about/">关于我</a>
+      </nav>
+      <div class="header-tools"><a class="header-contact" href="/#contact">联系我 ↗</a>
+        <button class="theme-toggle icon-button" type="button" aria-label="切换为深色主题" title="切换明暗主题"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><path d="M12 4.5v15a7.5 7.5 0 0 0 0-15Z" fill="currentColor" stroke="none"/></svg></button>
+        <button class="menu-toggle icon-button" type="button" aria-label="打开导航" aria-controls="primary-navigation" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <script>(function initializeShell(){
+  const root=document.documentElement;
+  const menu=document.querySelector('.menu-toggle'), nav=document.querySelector('#primary-navigation'),theme=document.querySelector('.theme-toggle');
+  const compact=matchMedia('(max-width:780px)'),systemTheme=matchMedia('(prefers-color-scheme: dark)');
+  let choice=['light','dark'].includes(root.dataset.themeChoice)?root.dataset.themeChoice:null;
+  let lastStoredChoice=choice,memoryOnlyChoice=false;
+  const syncTheme=()=>{const dark=root.dataset.theme==='dark';theme.setAttribute('aria-label',dark?'切换为浅色主题':'切换为深色主题');document.querySelector('[data-theme-color]')?.setAttribute('content',dark?'#080b0f':'#f7f7f2');};
+  const applyTheme=()=>{if(choice)root.dataset.themeChoice=choice;else delete root.dataset.themeChoice;root.dataset.theme=choice||'dark';syncTheme();};
+  const refreshStoredTheme=()=>{
+    let saved;
+    try{const value=localStorage.getItem('zhangxi-theme-reference');saved=value==='light'||value==='dark'?value:null;}catch{applyTheme();return;}
+    // A returned BFCache page adopts newer persisted choices. A failed local
+    // write keeps its in-memory choice unless a different valid choice appears.
+    if(!memoryOnlyChoice||(saved&&saved!==lastStoredChoice)){choice=saved;memoryOnlyChoice=false;}
+    lastStoredChoice=saved;applyTheme();
+  };
+  const menuOpen=()=>menu.getAttribute('aria-expanded')==='true';
+  const firstNavLink=()=>nav.querySelector('a[href]');
+  let lastFocused=null,wasCompact=compact.matches;
+  const setMenu=(open,restore=false)=>{
+    // Only reclaim focus when closing the region which still owns it.
+    const returnFocus=!open&&compact.matches&&(restore||nav.contains(document.activeElement));
+    if(returnFocus)menu.focus({preventScroll:true});
+    menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'关闭导航':'打开导航');
+    nav.toggleAttribute('data-open',open);if(open)nav.scrollTop=0;
+  };
+  theme.addEventListener('click',()=>{choice=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('zhangxi-theme-reference',choice);lastStoredChoice=choice;memoryOnlyChoice=false;}catch{memoryOnlyChoice=true;}applyTheme();});
+  systemTheme.addEventListener('change',()=>{if(!choice)applyTheme();});
+  window.addEventListener('pageshow',refreshStoredTheme);
+  window.addEventListener('storage',event=>{if(event.key===null||event.key==='zhangxi-theme-reference')refreshStoredTheme();});
+  menu.addEventListener('click',event=>{
+    const open=!menuOpen();setMenu(open);
+    // Keyboard / assistive activation enters the disclosure; pointer opening does not steal focus.
+    if(open&&event.detail===0)firstNavLink()?.focus({preventScroll:true});
+  });
+  menu.addEventListener('keydown',event=>{
+    // Also support switching from a pointer-opened disclosure to keyboard navigation.
+    if(event.key==='Tab'&&!event.shiftKey&&menuOpen()){
+      event.preventDefault();firstNavLink()?.focus({preventScroll:true});
+    }
+  });
+  nav.addEventListener('click',event=>{
+    if(event.target.closest('a')&&event.button===0&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey)setMenu(false);
+  });
+  document.addEventListener('focusin',event=>{
+    lastFocused=event.target;
+    // This is a non-modal disclosure: forward and reverse Tab may leave it normally.
+    if(menuOpen()&&!nav.contains(event.target)&&event.target!==menu)setMenu(false);
+  });
+  document.addEventListener('focusout',event=>{
+    // Preserve the owner when CSS hides it, regardless of media-query/blur order.
+    // A move from a visible control to blank content is not a resize focus request.
+    if(!event.relatedTarget&&compact.matches===wasCompact&&event.target.getClientRects().length)lastFocused=null;
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&menuOpen()){event.preventDefault();setMenu(false,true);}
+  });
+  document.addEventListener('click',event=>{if(!event.target.closest('.site-header')&&menuOpen())setMenu(false);});
+  compact.addEventListener('change',()=>{
+    const active=document.activeElement===document.body?lastFocused:document.activeElement;
+    const toMenu=compact.matches&&nav.contains(active),toNav=!compact.matches&&active===menu;
+    wasCompact=compact.matches;setMenu(false);
+    if(toMenu)menu.focus({preventScroll:true});else if(toNav)firstNavLink()?.focus({preventScroll:true});
+  });applyTheme();root.classList.add('has-js');
+})();</script>
+  <main id="main-content"><article class="project-detail page-shell" data-case-reader>
+    <nav class="detail-breadcrumb" aria-label="项目位置"><a href="/work/">作品集</a><span aria-hidden="true">/</span><a href="/work/#venture">创业项目与平台</a></nav>
+    <div class="project-branch"><span>工作室分支项目</span><a href="/work/amd-ai-campus/">AMD 校园 AI 共创</a></div>
+    <header class="detail-hero professional-detail-hero without-documentary-media has-concept-visual">
+      <div class="detail-heading"><div class="detail-meta"><span class="project-type">社群创业</span><time>2024.05 起</time></div><h1>同路人工作室</h1><p class="detail-role"><span>项目角色</span>联合创始人</p><p class="detail-intro">组织研究、团队协作与社群服务。</p><div class="case-shortcuts"><a class="secondary-action" data-evidence-link href="#case-tongluren-7">查看项目过程与交付 <span aria-hidden="true">↓</span></a></div></div><figure class="project-orbit-hero" data-project-art="tongluren" data-cover-kind="concept"><div class="project-art-stage"><picture><img src="/assets/project-covers/cosmic-tongluren-960.webp" srcset="/assets/project-covers/cosmic-tongluren-480.webp 480w, /assets/project-covers/cosmic-tongluren-960.webp 960w, /assets/project-covers/cosmic-tongluren-1440.webp 1440w" sizes="(max-width:780px) 92vw, 540px" width="960" height="720" alt="同路人工作室3D 概念封面：三条独立轨道在共享星核交会，表达研究、成员与协作。" style="--cover-focus:50% 50%" loading="lazy" decoding="async"></picture><div data-project-canvas></div><span class="project-art-coordinate" aria-hidden="true">VENTURE / 01</span></div><figcaption><span>3D 概念封面 · 项目意象</span><div class="project-art-controls"><button type="button" data-project-activate hidden>旋转作品 ↗</button><button type="button" data-project-reset hidden>复位</button></div></figcaption><p data-project-art-status role="status" aria-live="polite"></p></figure>
+    </header>
+    <section class="case-brief professional-brief" aria-label="项目摘要"><dl class="case-summary-grid"><div class="summary-problem"><dt>解决什么问题</dt><dd>早期项目机会信息分散，规则理解和参与路径不清；成员各自行动时，研究结论难以沉淀，协作也不稳定。</dd></div><div><dt>我的职责</dt><dd>联合创始人 · 研究与协作</dd></div><div><dt>如何推进</dt><dd>整理问题与资料来源 → 分配研究任务 → 社群交流与复盘 → 形成合作方案。</dd></div><div><dt>形成的交付</dt><dd>研究与社群协作机制；AMD 共创、设备体验系列方案。</dd></div><div class="summary-stage"><dt>当前阶段</dt><dd><strong>创业工作室</strong><span>7 人为历史阶段团队规模。校园合作以方案与执行准备展示，AMD 为工作室分支。</span></dd></div></dl></section>
+    <div class="case-reading"><nav class="case-contents" aria-label="本项目内容目录" data-case-toc><p class="eyebrow">阅读目录</p><button type="button" data-case-toc-toggle aria-expanded="true" aria-controls="case-toc-links" hidden><span>目录 · <span data-case-toc-current>项目与问题</span></span><span data-case-toc-action aria-hidden="true">展开</span></button><ol id="case-toc-links"><li><a href="#case-tongluren-1"><span aria-hidden="true">01</span>项目与问题</a></li><li><a href="#case-tongluren-2"><span aria-hidden="true">02</span>本人角色</a></li><li><a href="#case-tongluren-3"><span aria-hidden="true">03</span>目标与关键判断</a></li><li><a href="#case-tongluren-4"><span aria-hidden="true">04</span>推进流程</a></li><li><a href="#case-tongluren-5"><span aria-hidden="true">05</span>核心产品或机制</a></li><li><a href="#case-tongluren-6"><span aria-hidden="true">06</span>代表案例与材料</a></li><li><a href="#case-tongluren-7"><span aria-hidden="true">07</span>交付结果与当前阶段</a></li><li><a href="#case-tongluren-8"><span aria-hidden="true">08</span>复盘与下一步</a></li></ol><a class="reader-back" href="/work/" data-reading-back>返回作品集 <span aria-hidden="true">↗</span></a></nav>
+    <div class="case-chapters"><section class="case-chapter" id="case-tongluren-1" tabindex="-1" aria-labelledby="case-tongluren-1-title"><p class="chapter-index latin">01</p><h2 id="case-tongluren-1-title">项目与问题</h2><h3 class="chapter-topic">围绕共同问题建立工作室</h3><p>从 2024 年 5 月起，我作为同路人联合创始人，围绕大学生金融学习、项目研究和社群协作开展工作。成员的信息来源分散、讨论容易停留在转发消息，工作室把资料整理、团队研究与成员服务接起来，让共同问题有人研究和跟进。</p></section><section class="case-chapter" id="case-tongluren-2" tabindex="-1" aria-labelledby="case-tongluren-2-title"><p class="chapter-index latin">02</p><h2 id="case-tongluren-2-title">本人角色</h2><h3 class="chapter-topic">我的职责与七人协作</h3><p>早期我从零招募并组建 7 人协作团队，参与研究组织、项目筛选、社群运营和成员服务探索。团队按资料研究、项目跟进、社群运营、成员协作分工；7 人是当时的规模，不是当前人数。</p><p>我负责衔接研究与运营：成员的问题成为研究任务，整理后的资料由团队讨论、跟进，再回到社群中使用。</p></section><section class="case-chapter" id="case-tongluren-3" tabindex="-1" aria-labelledby="case-tongluren-3-title"><p class="chapter-index latin">03</p><h2 id="case-tongluren-3-title">目标与关键判断</h2><h3 class="chapter-topic">把机会描述变成研究问题</h3><p>研究涉及股票、基金、新股申购和新兴金融产品。我先梳理交易规则、参与门槛、收益结构与风险敞口，再讨论机会；单段表现或收益数字不足以判断是否适合参与，来源和未确定部分也需要保留。这里呈现的是历史研究方法，不是投资建议。</p></section><section class="case-chapter" id="case-tongluren-4" tabindex="-1" aria-labelledby="case-tongluren-4-title"><p class="chapter-index latin">04</p><h2 id="case-tongluren-4-title">推进流程</h2><h3 class="chapter-topic">研究与社群之间的工作流程</h3><ol class="case-steps"><li>收集并核验资料，整理来源、规则和参与条件。</li><li>形成结构化研究内容，供团队进行项目筛选与案例讨论。</li><li>由项目跟进与运营协作承接后续问题，通过资料共享和研讨组织交流。</li><li>对讨论与执行进行复盘，保留能够继续使用的信息和问题。</li></ol></section><section class="case-chapter" id="case-tongluren-5" tabindex="-1" aria-labelledby="case-tongluren-5-title"><p class="chapter-index latin">05</p><h2 id="case-tongluren-5-title">核心产品或机制</h2><h3 class="chapter-topic">成员服务如何探索</h3><p>在学习与实践社群基础上，我参与探索从免费学习到深度会员服务、财商教育产品的分层支持。商业化仍处探索阶段，重点是明确不同需求对应哪些内容，以及团队能持续提供什么服务。</p></section><section class="case-chapter" id="case-tongluren-6" tabindex="-1" aria-labelledby="case-tongluren-6-title"><p class="chapter-index latin">06</p><h2 id="case-tongluren-6-title">代表案例与材料</h2><h3 class="chapter-topic">同路人与校园 AI 活动的连接</h3><p>AMD 校园共创是同路人的分支项目。我承担方案与组织协调，联名的“中南同路人与 AMD 昆仑元 AI 金点子共创比赛”及 PK 方案围绕创意梳理、辅导、展示和评选设计参与路径。</p><p>本地 AI 设备体验方案进一步明确分工：同路人承担整体组织、现场协调和基础执行，产品方负责设备展示、内容介绍和技术支持。我通过方案把双方的支持资源与执行任务对齐。</p></section><section class="case-chapter" id="case-tongluren-7" tabindex="-1" aria-labelledby="case-tongluren-7-title"><p class="chapter-index latin">07</p><h2 id="case-tongluren-7-title">交付结果与当前阶段</h2><h3 class="chapter-topic">已经形成的交付</h3><aside class="case-key-facts" id="case-data-tongluren" aria-label="阶段记录"><p>阶段记录</p><dl class="detail-facts"><div class="detail-fact"><dt>历史阶段团队</dt><dd>7 人</dd></div><div class="detail-fact"><dt>社群搭建</dt><dd>0 → 1</dd></div></dl></aside><aside class="case-path" data-case-path="tongluren" data-path-kind="studio" aria-label="从共同研究到校园协作"><h3>从共同研究到校园协作</h3><ol><li><strong>收集问题</strong><span>把成员的学习问题与项目资料交给研究、跟进和运营分工承接。</span></li><li><strong>组织协作</strong><span>我衔接研究与社群，在校园合作中对齐工作室和产品方的责任。</span></li><li><strong>形成交付</strong><span>沉淀研究与复盘机制，并形成 AMD 共创和设备体验系列方案。</span></li></ol><p class="path-note">AMD 为工作室分支；校园合作目前展示方案与执行准备。</p><div class="path-links"><a href="/work/amd-ai-campus/">进入同路人的 AMD 共创分支 <span aria-hidden="true">↗</span></a></div></aside><ul class="case-deliverables"><li>组建协作团队，从零搭建金融学习与实践社群，形成资料共享、案例研讨和项目复盘机制。</li><li>形成结构化研究材料，并探索分层成员服务。</li><li>参与校园 AI 联名活动与设备体验方案，明确工作室和产品方的组织分工。</li></ul><p class="case-evidence"><span>材料说明</span>团队与研究工作来自个人经历记录；校园 AI 分支展示方案交付与执行准备，详见 AMD 案例。</p></section><section class="case-chapter" id="case-tongluren-8" tabindex="-1" aria-labelledby="case-tongluren-8-title"><p class="chapter-index latin">08</p><h2 id="case-tongluren-8-title">复盘与下一步</h2><h3 class="chapter-topic">复盘与后续方向</h3><p>信息核验回答“是否值得继续看”，任务分工回答“由谁继续做”，交流与复盘让研究成为团队可用的资料。这套方法从金融学习延伸到校园 AI 方案，也让我更重视研究之后的协作与承接。</p></section></div>
+    </div>
+
+
+    <div class="detail-back"><a class="primary-action" href="/work/" data-reading-back>返回完整作品集 <span>→</span></a><a href="/resume/">查看项目经历</a><a href="mailto:michalflowers245@gmail.com">联系交流</a></div>
+    <section class="related-work"><header class="section-flag"><div><h2>继续浏览</h2></div><a class="section-more" href="/work/">全部项目 →</a></header><div class="project-grid"><article class="project-card related-card" id="card-amd-ai-campus-01" data-project="amd-ai-campus"><a class="related-card-link" id="card-amd-ai-campus-01-title" href="/work/amd-ai-campus/" data-project-link="amd-ai-campus"><h3>AMD 校园 AI 共创 <span aria-hidden="true">↗</span></h3><p>了解同路人工作室的校园共创分支，如何把研究与协作变成参与方案。</p></a></article><article class="project-card related-card" id="card-xingcheng-maker-02" data-project="xingcheng-maker"><a class="related-card-link" id="card-xingcheng-maker-02-title" href="/work/xingcheng-maker/" data-project-link="xingcheng-maker"><h3>星城创客 <span aria-hidden="true">↗</span></h3><p>从工作室协作继续看创业者社群、主题活动和平台运营。</p></a></article></div></section>
+  </article></main>
+  <footer class="site-footer site-footer-compact">
+    <div class="page-shell footer-inner">
+
+      <div class="footer-links"><a href="/work/">完整作品集</a><a href="/resume/">项目经历</a><a href="mailto:michalflowers245@gmail.com">michalflowers245@gmail.com</a></div>
+    </div>
+    <div class="footer-bottom page-shell"><span>张熙 · ZHANG XI</span><span>总办助理 · AI应用与资源协同</span><a href="#main-content">回到顶部 ↑</a></div>
+  </footer>
+
+</body>
+</html>

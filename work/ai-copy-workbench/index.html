@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f2" data-theme-color>
+  <meta name="description" content="把资料研究、内容编辑与版本归档接成创作流程。">
+  <meta property="og:title" content="闪聚星球 AI 文案工作台｜张熙作品集">
+  <meta property="og:description" content="把资料研究、内容编辑与版本归档接成创作流程。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+
+  <title>闪聚星球 AI 文案工作台｜张熙作品集</title>
+  <script>(function initializeTheme(){
+  const root=document.documentElement;
+  let choice=null;
+  try{const saved=localStorage.getItem('zhangxi-theme-reference');if(saved==='light'||saved==='dark')choice=saved;}catch{}
+  if(choice)root.dataset.themeChoice=choice;else delete root.dataset.themeChoice;
+  root.dataset.theme=choice||'dark';
+  document.querySelector('[data-theme-color]')?.setAttribute('content',root.dataset.theme==='dark'?'#080b0f':'#f7f7f2');
+})();</script>
+
+  <link rel="preload" as="font" href="/assets/fonts/barlow-condensed-600.woff2" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23080b0e'/%3E%3Cpath d='M15 18h34v7L26 41h23v7H15v-7l23-16H15z' fill='%23f7f7f2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/assets/site.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/folio.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/media.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/refine.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/experience.css?v=cb7bd6f2f8e58327">
+
+  <script type="module" src="/assets/site.js?v=cb7bd6f2f8e58327" data-project-module="/assets/runtime/project-viewer-WH2IDI5K.js"></script>
+  <link rel="canonical" href="https://michalflowers245-alt.github.io/work/ai-copy-workbench/">
+  <meta property="og:url" content="https://michalflowers245-alt.github.io/work/ai-copy-workbench/">
+  <meta property="og:site_name" content="张熙作品集">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="闪聚星球 AI 文案工作台｜张熙作品集">
+  <meta name="twitter:description" content="把资料研究、内容编辑与版本归档接成创作流程。">
+  <meta property="og:image" content="https://michalflowers245-alt.github.io/assets/cosmic/portfolio-share.jpg">
+  <meta property="og:image:width" content="1440">
+  <meta property="og:image:height" content="1000">
+  <meta property="og:image:alt" content="张熙 · 交互项目星图，实时3D概念场景">
+  <meta name="twitter:image" content="https://michalflowers245-alt.github.io/assets/cosmic/portfolio-share.jpg">
+  <meta name="twitter:image:alt" content="张熙 · 交互项目星图，实时3D概念场景">
+</head>
+<body class="page-work">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="site-header">
+    <div class="header-inner page-shell">
+      <a class="brand" href="/" aria-label="返回首页"><strong>张熙</strong><span>ZHANG XI</span></a>
+      <nav id="primary-navigation" aria-label="主导航">
+        <a href="/">首页</a><a href="/work/" aria-current="page">作品</a><a href="/resume/">项目经历</a><a href="/about/">关于我</a>
+      </nav>
+      <div class="header-tools"><a class="header-contact" href="/#contact">联系我 ↗</a>
+        <button class="theme-toggle icon-button" type="button" aria-label="切换为深色主题" title="切换明暗主题"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><path d="M12 4.5v15a7.5 7.5 0 0 0 0-15Z" fill="currentColor" stroke="none"/></svg></button>
+        <button class="menu-toggle icon-button" type="button" aria-label="打开导航" aria-controls="primary-navigation" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <script>(function initializeShell(){
+  const root=document.documentElement;
+  const menu=document.querySelector('.menu-toggle'), nav=document.querySelector('#primary-navigation'),theme=document.querySelector('.theme-toggle');
+  const compact=matchMedia('(max-width:780px)'),systemTheme=matchMedia('(prefers-color-scheme: dark)');
+  let choice=['light','dark'].includes(root.dataset.themeChoice)?root.dataset.themeChoice:null;
+  let lastStoredChoice=choice,memoryOnlyChoice=false;
+  const syncTheme=()=>{const dark=root.dataset.theme==='dark';theme.setAttribute('aria-label',dark?'切换为浅色主题':'切换为深色主题');document.querySelector('[data-theme-color]')?.setAttribute('content',dark?'#080b0f':'#f7f7f2');};
+  const applyTheme=()=>{if(choice)root.dataset.themeChoice=choice;else delete root.dataset.themeChoice;root.dataset.theme=choice||'dark';syncTheme();};
+  const refreshStoredTheme=()=>{
+    let saved;
+    try{const value=localStorage.getItem('zhangxi-theme-reference');saved=value==='light'||value==='dark'?value:null;}catch{applyTheme();return;}
+    // A returned BFCache page adopts newer persisted choices. A failed local
+    // write keeps its in-memory choice unless a different valid choice appears.
+    if(!memoryOnlyChoice||(saved&&saved!==lastStoredChoice)){choice=saved;memoryOnlyChoice=false;}
+    lastStoredChoice=saved;applyTheme();
+  };
+  const menuOpen=()=>menu.getAttribute('aria-expanded')==='true';
+  const firstNavLink=()=>nav.querySelector('a[href]');
+  let lastFocused=null,wasCompact=compact.matches;
+  const setMenu=(open,restore=false)=>{
+    // Only reclaim focus when closing the region which still owns it.
+    const returnFocus=!open&&compact.matches&&(restore||nav.contains(document.activeElement));
+    if(returnFocus)menu.focus({preventScroll:true});
+    menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'关闭导航':'打开导航');
+    nav.toggleAttribute('data-open',open);if(open)nav.scrollTop=0;
+  };
+  theme.addEventListener('click',()=>{choice=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('zhangxi-theme-reference',choice);lastStoredChoice=choice;memoryOnlyChoice=false;}catch{memoryOnlyChoice=true;}applyTheme();});
+  systemTheme.addEventListener('change',()=>{if(!choice)applyTheme();});
+  window.addEventListener('pageshow',refreshStoredTheme);
+  window.addEventListener('storage',event=>{if(event.key===null||event.key==='zhangxi-theme-reference')refreshStoredTheme();});
+  menu.addEventListener('click',event=>{
+    const open=!menuOpen();setMenu(open);
+    // Keyboard / assistive activation enters the disclosure; pointer opening does not steal focus.
+    if(open&&event.detail===0)firstNavLink()?.focus({preventScroll:true});
+  });
+  menu.addEventListener('keydown',event=>{
+    // Also support switching from a pointer-opened disclosure to keyboard navigation.
+    if(event.key==='Tab'&&!event.shiftKey&&menuOpen()){
+      event.preventDefault();firstNavLink()?.focus({preventScroll:true});
+    }
+  });
+  nav.addEventListener('click',event=>{
+    if(event.target.closest('a')&&event.button===0&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey)setMenu(false);
+  });
+  document.addEventListener('focusin',event=>{
+    lastFocused=event.target;
+    // This is a non-modal disclosure: forward and reverse Tab may leave it normally.
+    if(menuOpen()&&!nav.contains(event.target)&&event.target!==menu)setMenu(false);
+  });
+  document.addEventListener('focusout',event=>{
+    // Preserve the owner when CSS hides it, regardless of media-query/blur order.
+    // A move from a visible control to blank content is not a resize focus request.
+    if(!event.relatedTarget&&compact.matches===wasCompact&&event.target.getClientRects().length)lastFocused=null;
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&menuOpen()){event.preventDefault();setMenu(false,true);}
+  });
+  document.addEventListener('click',event=>{if(!event.target.closest('.site-header')&&menuOpen())setMenu(false);});
+  compact.addEventListener('change',()=>{
+    const active=document.activeElement===document.body?lastFocused:document.activeElement;
+    const toMenu=compact.matches&&nav.contains(active),toNav=!compact.matches&&active===menu;
+    wasCompact=compact.matches;setMenu(false);
+    if(toMenu)menu.focus({preventScroll:true});else if(toNav)firstNavLink()?.focus({preventScroll:true});
+  });applyTheme();root.classList.add('has-js');
+})();</script>
+  <main id="main-content"><article class="project-detail page-shell has-case-story" data-case-reader>
+    <nav class="detail-breadcrumb" aria-label="项目位置"><a href="/work/">作品集</a><span aria-hidden="true">/</span><a href="/work/#product">技术产品</a></nav>
+
+    <header class="detail-hero professional-detail-hero without-documentary-media has-concept-visual">
+      <div class="detail-heading"><div class="detail-meta"><span class="project-type">AI 文案助手 · 本地工作台</span><time>2026 · 本地持续迭代</time></div><h1>闪聚星球 AI 文案工作台</h1><p class="detail-role"><span>项目角色</span>产品与工作流设计 · AI 协作实现</p><p class="detail-intro">把资料研究、内容编辑与版本归档接成创作流程。</p><div class="case-shortcuts"><a class="secondary-action" data-evidence-link href="#case-ai-copy-workbench-5">查看项目过程与交付 <span aria-hidden="true">↓</span></a></div></div><figure class="project-orbit-hero" data-project-art="ai-copy-workbench" data-cover-kind="concept"><div class="project-art-stage"><picture><img src="/assets/project-covers/cosmic-ai-copy-workbench-960.webp" srcset="/assets/project-covers/cosmic-ai-copy-workbench-480.webp 480w, /assets/project-covers/cosmic-ai-copy-workbench-960.webp 960w, /assets/project-covers/cosmic-ai-copy-workbench-1440.webp 1440w" sizes="(max-width:780px) 92vw, 540px" width="960" height="720" alt="闪聚星球 AI 文案工作台3D 概念封面：卷曲的金属纸页与编织带，表达材料到文案的编辑过程。" style="--cover-focus:50% 50%" loading="lazy" decoding="async"></picture><div data-project-canvas></div><span class="project-art-coordinate" aria-hidden="true">PRODUCT / 11</span></div><figcaption><span>3D 概念封面 · 项目意象</span><div class="project-art-controls"><button type="button" data-project-activate hidden>旋转作品 ↗</button><button type="button" data-project-reset hidden>复位</button></div></figcaption><p data-project-art-status role="status" aria-live="polite"></p></figure>
+    </header>
+    <section class="case-brief professional-brief" aria-label="项目摘要"><dl class="case-summary-grid"><div class="summary-problem"><dt>解决什么问题</dt><dd>单次对话生成的内容容易脱离素材和个人表达；不同平台的文案结构不同，修改、核对与保存又散落在多个地方。</dd></div><div><dt>我的职责</dt><dd>产品与创作流程设计</dd></div><div><dt>如何推进</dt><dd>选择创作入口并提供资料 → 三方向研究 → 写作与真实编辑 → 人工确认 → 改写与版本归档。</dd></div><div><dt>形成的交付</dt><dd>四入口、三方向研究、写作与编辑流程；IP 资料、改写归档与失败恢复。</dd></div><div class="summary-stage"><dt>当前阶段</dt><dd><strong>本地应用 · 持续迭代</strong><span>已有完整任务交付记录；真实平台素材获取与正文核验的完整流程仍待验证。</span></dd></div></dl></section>
+    <div class="case-reading"><nav class="case-contents" aria-label="本项目内容目录" data-case-toc><p class="eyebrow">阅读目录</p><button type="button" data-case-toc-toggle aria-expanded="true" aria-controls="case-toc-links" hidden><span>目录 · <span data-case-toc-current>项目与问题</span></span><span data-case-toc-action aria-hidden="true">展开</span></button><ol id="case-toc-links"><li><a href="#case-ai-copy-workbench-1"><span aria-hidden="true">01</span>项目与问题</a></li><li><a href="#case-ai-copy-workbench-2"><span aria-hidden="true">02</span>本人角色</a></li><li><a href="#case-ai-copy-workbench-3"><span aria-hidden="true">03</span>目标与关键判断</a></li><li><a href="#case-ai-copy-workbench-4"><span aria-hidden="true">04</span>推进流程</a></li><li><a href="#case-ai-copy-workbench-6"><span aria-hidden="true">05</span>核心产品或机制</a></li><li><a href="#case-ai-copy-workbench-5"><span aria-hidden="true">06</span>代表案例与材料</a></li><li><a href="#case-ai-copy-workbench-7"><span aria-hidden="true">07</span>交付结果与当前阶段</a></li><li><a href="#case-ai-copy-workbench-8"><span aria-hidden="true">08</span>复盘与下一步</a></li></ol><a class="reader-back" href="/work/" data-reading-back>返回作品集 <span aria-hidden="true">↗</span></a></nav>
+    <div class="case-chapters"><section class="case-chapter" id="case-ai-copy-workbench-1" tabindex="-1" aria-labelledby="case-ai-copy-workbench-1-title"><p class="chapter-index latin">01</p><h2 id="case-ai-copy-workbench-1-title">项目与问题</h2><h3 class="chapter-topic">项目背景：从写一段话到管理一条内容流程</h3><p>闪聚星球 AI 文案工作台从相亲、同城社交与情感内容场景出发，处理素材分散、平台要求不同、IP 信息重复输入，以及改稿后找不到采用版本的问题。我将创作、来源、审核和作品记录放进同一本地应用。</p><p>产品从早期四入口工具，发展到 JEV 版本的研究、归档与改写；新增能力沿着同一条创作流程展开。</p></section><section class="case-chapter" id="case-ai-copy-workbench-2" tabindex="-1" aria-labelledby="case-ai-copy-workbench-2-title"><p class="chapter-index latin">02</p><h2 id="case-ai-copy-workbench-2-title">本人角色</h2><h3 class="chapter-topic">我的角色与四个创作入口</h3><p>我负责需求、输入输出、页面流程与审核边界，借助 AI 与 Codex 推进实现。朋友圈运营按主题交付 3、7 或 14 天计划；生活案例接收 1—9 张图片与事情经过，输出真实日常、有感而发、轻度业务启发三个角度。</p><p>小红书入口结合主题和 IP 信息，输出标题、正文、标签与发布版；抖音入口按情绪方向及约 30、60 或 90 秒生成口播。四个入口各自约束交付格式。</p></section><section class="case-chapter" id="case-ai-copy-workbench-3" tabindex="-1" aria-labelledby="case-ai-copy-workbench-3-title"><p class="chapter-index latin">03</p><h2 id="case-ai-copy-workbench-3-title">目标与关键判断</h2><h3 class="chapter-topic">关键判断：表达与事实分开</h3><p>IP 资料说明受众、表达方式与业务边界，本次素材说明实际发生的事情。生活案例只依据用户文字与图片，不联网补故事，也不虚构人物关系、时间地点或业务效果。</p><p>JEV 将搜索摘要、发布正文、OCR、平台字幕与 ASR 分开，分别记录帖子身份、正文核验和媒体完整度；转写或搜索文字不能直接冒充作者发布的原文。</p></section><section class="case-chapter" id="case-ai-copy-workbench-4" tabindex="-1" aria-labelledby="case-ai-copy-workbench-4-title"><p class="chapter-index latin">04</p><h2 id="case-ai-copy-workbench-4-title">推进流程</h2><h3 class="chapter-topic">当前流程：三个 AI 角色分阶段协作</h3><p>普通任务按主题事实、受众处境与业务关联三个方向研究、去重并整理来源。研究员、文案、主编是三个 AI 角色：研究员拆角度，文案结合 IP 资料起草，主编实际修改局部表达并检查事实与格式，最后由使用者决定采用。</p><p>新版分阶段呈现输入、结果和问题。搜索受限时明确标记，事实性内容保留待核实状态；生活案例不进入外部研究。</p></section><section class="case-chapter" id="case-ai-copy-workbench-6" tabindex="-1" aria-labelledby="case-ai-copy-workbench-6-title"><p class="chapter-index latin">05</p><h2 id="case-ai-copy-workbench-6-title">核心产品或机制</h2><h3 class="chapter-topic">一次重要迭代：不把摘要当正文，不让失败覆盖成果</h3><p>迭代中曾发现详情未加载时，搜索候选文字被放进发布正文。修正将两者拆开，要求核验身份与来源，并检查显示、复制和导出使用同一正文。</p><p>平台要求验证时暂停对应任务，保留素材与进度，待用户处理后继续。失败记录保留时间、次数和阶段，不覆盖已保存的成功正文；采用稿与归档独立记录，便于回看修改。</p><section class="implementation" id="implementation-ai-copy-workbench-revision-resume" data-code-sample="revision-resume" aria-labelledby="implementation-ai-copy-workbench-revision-resume-title" tabindex="-1"><div class="implementation-heading"><span>关键实现</span><span>Python</span></div><h3 id="implementation-ai-copy-workbench-revision-resume-title"><span class="title-part">改稿已保存，</span><span class="title-part">恢复时接着审核</span></h3><p>修改稿已经生成，但 AI 主编连接中断时，重新开始整个流程会重复写稿，也容易混淆版本。</p><p class="implementation-result"><strong>实现作用：</strong>让已保存的修改稿继续接受审核，而不是每次恢复都重新生成。对应的是创作任务的版本恢复，不是平台采集恢复。</p>
+      <details class="code-disclosure" id="implementation-ai-copy-workbench-revision-resume-details" data-reading-disclosure><summary>查看实现与真实代码 <span>14 行</span></summary><p class="code-explanation">这段分支读取最新稿件，检查它是否为当前退回意见之后保存的修改稿。条件满足就直接交给编辑；没有可复用稿件时才调用写作阶段。</p><div class="code-toolbar"><span>workflow.py · 修改稿恢复分支</span><div class="code-actions"><button type="button" data-wrap-code aria-pressed="false" hidden>换行阅读</button><button type="button" data-copy-code aria-label="复制改稿已保存，恢复时接着审核代码" hidden>复制代码</button></div></div><pre tabindex="0" aria-label="改稿已保存，恢复时接着审核代码，可横向滚动"><code><span class="code-context-indent">        </span>latest = self.db.one(&quot;SELECT * FROM draft_versions WHERE task_id=? ORDER BY version DESC LIMIT 1&quot;, (task_id,))
+<span class="code-context-indent">        </span>revision_writer_ready = bool(
+<span class="code-context-indent">        </span>    review
+<span class="code-context-indent">        </span>    and latest
+<span class="code-context-indent">        </span>    and review.get(&quot;decision&quot;) == &quot;REVISE&quot;
+<span class="code-context-indent">        </span>    and latest.get(&quot;origin&quot;) == &quot;WRITER_REVISION&quot;
+<span class="code-context-indent">        </span>    and int(task.get(&quot;revision_round&quot;) or 0) &gt; int(review.get(&quot;round&quot;) or 0)
+<span class="code-context-indent">        </span>    and str(latest.get(&quot;created_at&quot;) or &quot;&quot;) &gt;= str(review.get(&quot;created_at&quot;) or &quot;&quot;)
+<span class="code-context-indent">        </span>)
+<span class="code-context-indent">        </span>if not latest or (review and not revision_writer_ready):
+<span class="code-context-indent">        </span>    instructions = json_loads(review.get(&quot;instructions_json&quot;) if review else None, []) or []
+<span class="code-context-indent">        </span>    latest = self.run_writer(task, instructions)
+<span class="code-context-indent">        </span>    task = self.db.one(&quot;SELECT * FROM copy_tasks WHERE id=?&quot;, (task_id,)) or task
+<span class="code-context-indent">        </span>self.run_editor(task, latest)</code></pre><p class="code-feedback" role="status" aria-live="polite"></p><p class="implementation-boundary">摘录来自 run() 中段，依赖前文的任务与审核状态及其他持久化模块；仅展示该分支实现，不表示所有中断情形或真实平台流程均已验收。</p></details>
+      <p class="implementation-boundary">我负责创作流程、审核与作品管理设计，借助 AI 与 Codex 推进实现；源码用于解释项目机制，不主张全部代码独立编写。</p></section></section><section class="case-chapter" id="case-ai-copy-workbench-5" tabindex="-1" aria-labelledby="case-ai-copy-workbench-5-title"><p class="chapter-index latin">06</p><h2 id="case-ai-copy-workbench-5-title">代表案例与材料</h2><h3 class="chapter-topic">具体案例：一份完整的七天预热内容包</h3><aside class="source-excerpt" data-evidence-excerpt="seven-day-draft" aria-labelledby="evidence-seven-day-draft"><p class="excerpt-source">2026年9月27日任务输入、研究写作审核过程与《七天预热文案》</p><h3 id="evidence-seven-day-draft">任务过程与第 2 天稿件节选</h3><p>这次输入是“周末脱单局，提前7天温柔预热”，目标是在微信朋友圈建立信任。任务记录与最终稿分别保留过程状态和实际交付文字。</p><dl><div><dt>过程记录</dt><dd>研究完成后进入写作，写稿完成后进入 AI 主编审核；记录显示审核通过、任务完成，并保存版本 2。</dd></div><div><dt>第 2 天正文 · 原文</dt><dd>“参加前，至少把三件事问清：是自由交流还是有固定流程；能不能拒绝交换联系方式；个人信息由谁保管、怎样退出。”</dd></div><div><dt>互动承接 · 原文</dt><dd>“有人询问具体规则时，只记录问题并回复：已确认的信息会说明，未确认的部分不提前承诺。”</dd></div></dl><p class="excerpt-note">研究员、文案、主编均为 AI 角色。此处是任务记录与稿件节选，不是修改前后对照，也不证明已发布、已举办活动或产生转化。</p></aside><aside class="case-path" data-case-path="ai-copy-workbench" data-path-kind="product" aria-label="一份七天预热稿怎样完成"><h3>一份七天预热稿怎样完成</h3><ol><li><strong>任务输入</strong><span>以“周末脱单局，提前 7 天温柔预热”为主题，明确朋友圈沟通目标。</span></li><li><strong>研究编辑</strong><span>AI 研究、文案与主编分阶段协作；未确认的时间、费用和人数保留待核实。</span></li><li><strong>完整交付</strong><span>保存版本 2，逐日给出内容目的、完整正文与互动承接，便于继续修改。</span></li></ol><p class="path-note">我设计流程并借助 AI 协作实现；记录证明内容交付，不表示已发布或产生转化。</p></aside><p>七天内容从社交处境、参与条件延伸到隐私边界和了解入口，每天同时交付目的、正文与互动承接。第 2 天不是催促报名，而是把模糊顾虑转为读者可以核对的规则；未确认的时间、费用与人数仍待核实。</p><p class="case-evidence"><span>材料说明</span>这次任务保留了输入、研究、写作、审核和最终稿。它证明一次完整内容交付，不表示文案已经发布、活动已经举办或产生转化。</p></section><section class="case-chapter" id="case-ai-copy-workbench-7" tabindex="-1" aria-labelledby="case-ai-copy-workbench-7-title"><p class="chapter-index latin">07</p><h2 id="case-ai-copy-workbench-7-title">交付结果与当前阶段</h2><h3 class="chapter-topic">交付与验证：能运行，也能检查来源与状态</h3><aside class="case-key-facts" id="case-data-ai-copy-workbench" aria-label="阶段记录"><p>阶段记录</p><dl class="detail-facts"><div class="detail-fact"><dt>创作入口</dt><dd>4 类</dd></div><div class="detail-fact"><dt>研究、文案、主编</dt><dd>3 个 AI 角色</dd></div><div class="detail-fact"><dt>作品归档</dt><dd>本地</dd></div></dl></aside><p>交付包括四入口本地应用、IP 配置、研究与编辑流程、素材和作品归档，以及失败恢复。结果经使用者确认后复制或导出，内容生成与社交账号发布分开；私人图片、运行数据和凭据不进入公开材料。</p><p>改写路径先核对原帖与正文、保存来源快照，再完成拆解、策略、文案、配图方案与审核五阶段。配图交付是画面说明和提示词，不是生成图片；局部重做保留版本与依赖关系。</p><p>9 月 27 日历史记录为后端 234 项测试通过、4 项跳过；已保存真实样本通过显示、复制与导出一致性检查，部分抖音发布片段与 ASR 分开呈现。这些记录仅对应当时版本和样本。</p></section><section class="case-chapter" id="case-ai-copy-workbench-8" tabindex="-1" aria-labelledby="case-ai-copy-workbench-8-title"><p class="chapter-index latin">08</p><h2 id="case-ai-copy-workbench-8-title">复盘与下一步</h2><h3 class="chapter-topic">当前阶段：产品已成形，平台闭环继续验证</h3><p>截至 9 月 27 日归档，真实平台批次仍有安全验证和未完成详情，素材获取与正文核验的完整流程尚未验收。JEV 推荐分层与正文归档独立设计：值得推荐与能够保存核验素材是两个问题，支持批量任务也不等于某批全部完成。</p><p>后续优先补齐真实平台流程验证，再收集内容质量与持续使用反馈，检查研究、写作、编辑和恢复是否真正支持连续创作。</p></section></div>
+    </div>
+    <aside class="article-teaser" aria-label="延伸阅读：把一次生成做成可交付任务"><span class="eyebrow">延伸阅读：把一次生成做成可交付任务</span><h2><a href="/notes/ai-creation-workflow/">从会用 AI，到搭建可交付的创作工作流 <span aria-hidden="true">↗</span></a></h2><p>问题定义、知识库、模型选型、图像与视频，再到实际工作台中的研究、编辑和归档。</p></aside>
+
+    <div class="detail-back"><a class="primary-action" href="/work/" data-reading-back>返回完整作品集 <span>→</span></a><a href="/resume/">查看项目经历</a><a href="mailto:michalflowers245@gmail.com">联系交流</a></div>
+    <section class="related-work"><header class="section-flag"><div><h2>继续浏览</h2></div><a class="section-more" href="/work/">全部项目 →</a></header><div class="project-grid"><article class="project-card related-card" id="card-opc-ai-workflow-01" data-project="opc-ai-workflow"><a class="related-card-link" id="card-opc-ai-workflow-01-title" href="/work/opc-ai-workflow/" data-project-link="opc-ai-workflow"><h3>OPC 与 AI 工作流 <span aria-hidden="true">↗</span></h3><p>继续了解任务筛选、人工判断与 AI 执行的整体分工。</p></a></article><article class="project-card related-card" id="card-kuaizhai-web-clipper-02" data-project="kuaizhai-web-clipper"><a class="related-card-link" id="card-kuaizhai-web-clipper-02-title" href="/work/kuaizhai-web-clipper/" data-project-link="kuaizhai-web-clipper"><h3>AI Web Clipper｜快摘 <span aria-hidden="true">↗</span></h3><p>从内容生产向前看，了解网页素材的采集、来源保留与复用。</p></a></article></div></section>
+  </article></main>
+  <footer class="site-footer site-footer-compact">
+    <div class="page-shell footer-inner">
+
+      <div class="footer-links"><a href="/work/">完整作品集</a><a href="/resume/">项目经历</a><a href="mailto:michalflowers245@gmail.com">michalflowers245@gmail.com</a></div>
+    </div>
+    <div class="footer-bottom page-shell"><span>张熙 · ZHANG XI</span><span>总办助理 · AI应用与资源协同</span><a href="#main-content">回到顶部 ↑</a></div>
+  </footer>
+
+</body>
+</html>

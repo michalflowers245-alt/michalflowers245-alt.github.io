@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f2" data-theme-color>
+  <meta name="description" content="把问题定义、知识库、本地模型、图像、视频和人工审核接起来：我的 AI 创作方法、工作台实践与技术选型笔记。">
+  <meta property="og:title" content="从会用 AI，到搭建可交付的创作工作流｜张熙">
+  <meta property="og:description" content="把问题定义、知识库、本地模型、图像、视频和人工审核接起来：我的 AI 创作方法、工作台实践与技术选型笔记。">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+
+  <title>从会用 AI，到搭建可交付的创作工作流｜张熙</title>
+  <script>(function initializeTheme(){
+  const root=document.documentElement;
+  let choice=null;
+  try{const saved=localStorage.getItem('zhangxi-theme-reference');if(saved==='light'||saved==='dark')choice=saved;}catch{}
+  if(choice)root.dataset.themeChoice=choice;else delete root.dataset.themeChoice;
+  root.dataset.theme=choice||'dark';
+  document.querySelector('[data-theme-color]')?.setAttribute('content',root.dataset.theme==='dark'?'#080b0f':'#f7f7f2');
+})();</script>
+
+  <link rel="preload" as="font" href="/assets/fonts/barlow-condensed-600.woff2" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23080b0e'/%3E%3Cpath d='M15 18h34v7L26 41h23v7H15v-7l23-16H15z' fill='%23f7f7f2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/assets/site.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/folio.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/media.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/refine.css?v=cb7bd6f2f8e58327">
+  <link rel="stylesheet" href="/assets/experience.css?v=cb7bd6f2f8e58327">
+
+  <script type="module" src="/assets/site.js?v=cb7bd6f2f8e58327" data-project-module="/assets/runtime/project-viewer-WH2IDI5K.js"></script>
+  <link rel="canonical" href="https://michalflowers245-alt.github.io/notes/ai-creation-workflow/">
+  <meta property="og:url" content="https://michalflowers245-alt.github.io/notes/ai-creation-workflow/">
+  <meta property="og:site_name" content="张熙作品集">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="从会用 AI，到搭建可交付的创作工作流｜张熙">
+  <meta name="twitter:description" content="把问题定义、知识库、本地模型、图像、视频和人工审核接起来：我的 AI 创作方法、工作台实践与技术选型笔记。">
+  <meta property="og:image" content="https://michalflowers245-alt.github.io/assets/cosmic/portfolio-share.jpg">
+  <meta property="og:image:width" content="1440">
+  <meta property="og:image:height" content="1000">
+  <meta property="og:image:alt" content="张熙 · 交互项目星图，实时3D概念场景">
+  <meta name="twitter:image" content="https://michalflowers245-alt.github.io/assets/cosmic/portfolio-share.jpg">
+  <meta name="twitter:image:alt" content="张熙 · 交互项目星图，实时3D概念场景">
+</head>
+<body class="page-article">
+  <a class="skip-link" href="#main-content">跳至正文</a>
+  <header class="site-header">
+    <div class="header-inner page-shell">
+      <a class="brand" href="/" aria-label="返回首页"><strong>张熙</strong><span>ZHANG XI</span></a>
+      <nav id="primary-navigation" aria-label="主导航">
+        <a href="/">首页</a><a href="/work/">作品</a><a href="/resume/">项目经历</a><a href="/about/">关于我</a>
+      </nav>
+      <div class="header-tools"><a class="header-contact" href="/#contact">联系我 ↗</a>
+        <button class="theme-toggle icon-button" type="button" aria-label="切换为深色主题" title="切换明暗主题"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><path d="M12 4.5v15a7.5 7.5 0 0 0 0-15Z" fill="currentColor" stroke="none"/></svg></button>
+        <button class="menu-toggle icon-button" type="button" aria-label="打开导航" aria-controls="primary-navigation" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <script>(function initializeShell(){
+  const root=document.documentElement;
+  const menu=document.querySelector('.menu-toggle'), nav=document.querySelector('#primary-navigation'),theme=document.querySelector('.theme-toggle');
+  const compact=matchMedia('(max-width:780px)'),systemTheme=matchMedia('(prefers-color-scheme: dark)');
+  let choice=['light','dark'].includes(root.dataset.themeChoice)?root.dataset.themeChoice:null;
+  let lastStoredChoice=choice,memoryOnlyChoice=false;
+  const syncTheme=()=>{const dark=root.dataset.theme==='dark';theme.setAttribute('aria-label',dark?'切换为浅色主题':'切换为深色主题');document.querySelector('[data-theme-color]')?.setAttribute('content',dark?'#080b0f':'#f7f7f2');};
+  const applyTheme=()=>{if(choice)root.dataset.themeChoice=choice;else delete root.dataset.themeChoice;root.dataset.theme=choice||'dark';syncTheme();};
+  const refreshStoredTheme=()=>{
+    let saved;
+    try{const value=localStorage.getItem('zhangxi-theme-reference');saved=value==='light'||value==='dark'?value:null;}catch{applyTheme();return;}
+    // A returned BFCache page adopts newer persisted choices. A failed local
+    // write keeps its in-memory choice unless a different valid choice appears.
+    if(!memoryOnlyChoice||(saved&&saved!==lastStoredChoice)){choice=saved;memoryOnlyChoice=false;}
+    lastStoredChoice=saved;applyTheme();
+  };
+  const menuOpen=()=>menu.getAttribute('aria-expanded')==='true';
+  const firstNavLink=()=>nav.querySelector('a[href]');
+  let lastFocused=null,wasCompact=compact.matches;
+  const setMenu=(open,restore=false)=>{
+    // Only reclaim focus when closing the region which still owns it.
+    const returnFocus=!open&&compact.matches&&(restore||nav.contains(document.activeElement));
+    if(returnFocus)menu.focus({preventScroll:true});
+    menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'关闭导航':'打开导航');
+    nav.toggleAttribute('data-open',open);if(open)nav.scrollTop=0;
+  };
+  theme.addEventListener('click',()=>{choice=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('zhangxi-theme-reference',choice);lastStoredChoice=choice;memoryOnlyChoice=false;}catch{memoryOnlyChoice=true;}applyTheme();});
+  systemTheme.addEventListener('change',()=>{if(!choice)applyTheme();});
+  window.addEventListener('pageshow',refreshStoredTheme);
+  window.addEventListener('storage',event=>{if(event.key===null||event.key==='zhangxi-theme-reference')refreshStoredTheme();});
+  menu.addEventListener('click',event=>{
+    const open=!menuOpen();setMenu(open);
+    // Keyboard / assistive activation enters the disclosure; pointer opening does not steal focus.
+    if(open&&event.detail===0)firstNavLink()?.focus({preventScroll:true});
+  });
+  menu.addEventListener('keydown',event=>{
+    // Also support switching from a pointer-opened disclosure to keyboard navigation.
+    if(event.key==='Tab'&&!event.shiftKey&&menuOpen()){
+      event.preventDefault();firstNavLink()?.focus({preventScroll:true});
+    }
+  });
+  nav.addEventListener('click',event=>{
+    if(event.target.closest('a')&&event.button===0&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey)setMenu(false);
+  });
+  document.addEventListener('focusin',event=>{
+    lastFocused=event.target;
+    // This is a non-modal disclosure: forward and reverse Tab may leave it normally.
+    if(menuOpen()&&!nav.contains(event.target)&&event.target!==menu)setMenu(false);
+  });
+  document.addEventListener('focusout',event=>{
+    // Preserve the owner when CSS hides it, regardless of media-query/blur order.
+    // A move from a visible control to blank content is not a resize focus request.
+    if(!event.relatedTarget&&compact.matches===wasCompact&&event.target.getClientRects().length)lastFocused=null;
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&menuOpen()){event.preventDefault();setMenu(false,true);}
+  });
+  document.addEventListener('click',event=>{if(!event.target.closest('.site-header')&&menuOpen())setMenu(false);});
+  compact.addEventListener('change',()=>{
+    const active=document.activeElement===document.body?lastFocused:document.activeElement;
+    const toMenu=compact.matches&&nav.contains(active),toNav=!compact.matches&&active===menu;
+    wasCompact=compact.matches;setMenu(false);
+    if(toMenu)menu.focus({preventScroll:true});else if(toNav)firstNavLink()?.focus({preventScroll:true});
+  });applyTheme();root.classList.add('has-js');
+})();</script>
+  <main id="main-content"><article class="project-detail page-shell article-detail" data-case-reader>
+    <nav class="detail-breadcrumb" aria-label="文章位置"><a href="/about/">关于我</a><span aria-hidden="true">/</span><span>方法文章</span></nav>
+    <header class="detail-hero"><div class="detail-heading">
+      <div class="detail-meta"><span class="project-type">AI 方法与实践</span><time datetime="2026-10-10">更新于 2026.10.10</time></div>
+      <h1><span class="title-part">从会用 AI，</span><span class="title-part">到搭建可交付的创作工作流</span></h1>
+      <p class="detail-role">张熙 · 问题定义 / 人机协作 / 内容交付</p>
+      <p class="detail-intro">工具可以很快给出一个结果，但从“生成了”到“能够交付”，中间还有事实、选择、协作和验收。这篇文章把我的既有思考与全链路创作笔记整理在一起，讲清每个环节为什么存在、应该交付什么，以及由谁来判断。</p>
+      <div class="case-shortcuts"><a class="primary-action" href="#note-architecture" data-evidence-link>先看整条流程 <span aria-hidden="true">↓</span></a><a class="secondary-action" href="#note-workbench-practice" data-evidence-link>直接看我的实践 <span aria-hidden="true">↓</span></a></div>
+    </div></header>
+    <p class="article-scope">本文分为工作方法、已有工作台实践和技术选型建议。文案工作台有实际任务记录；本地语言模型与图像、视频联动属于选型与待验证方案，不表示已在我的设备上完整跑通。技术依据核对于 2026 年 10 月 10 日。</p>
+    <div class="case-reading">
+      <nav class="case-contents" aria-label="文章内容目录" data-case-toc><p class="eyebrow">阅读目录</p><button type="button" data-case-toc-toggle aria-expanded="true" aria-controls="case-toc-links" hidden><span>目录 · <span data-case-toc-current>01 判断比生成更重要</span></span><span data-case-toc-action aria-hidden="true">展开</span></button><ol id="case-toc-links"><li><a href="#note-judgement">01 判断比生成更重要</a></li><li><a href="#note-architecture">02 把能力接成一条流程</a></li><li><a href="#note-language-model">03 语言模型、脚本与提示词</a></li><li><a href="#note-image-workflow">04 图像：先把参考素材做好</a></li><li><a href="#note-video-workflow">05 视频：分镜、参数与连续性</a></li><li><a href="#note-workbench-practice">06 我的工作台实践</a></li><li><a href="#note-knowledge-and-delivery">07 让经验能够重复使用</a></li><li><a href="#note-next-and-sources">08 从一个任务开始迭代</a></li></ol><a class="reader-back" href="/about/">关于我 <span aria-hidden="true">↗</span></a></nav>
+      <div class="case-chapters"><section class="case-chapter" id="note-judgement" tabindex="-1" aria-labelledby="note-judgement-title"><h2 id="note-judgement-title">01 判断比生成更重要</h2><p>我之前写过，AI 降低的是生成初稿的成本，不是把事情做成的全部成本。一份方案写得再快，客户是谁、数据从哪里来、遇到问题怎么办，仍然需要有人回答。模型给出材料，不等于项目已经完成。</p><p>这也是我把不同工具组织成工作流的出发点：不是增加一份软件清单，而是让模糊需求经过拆解、执行和检验，变成别人拿得走、用得上的东西。判断是否正确、取舍是否合适、最终是否交付，比会操作多少按钮更重要。</p><h3>先定义任务，再选择工具</h3><ul class="case-deliverables"><li>对象：这份内容给谁看？对方已经知道什么，还在犹豫什么？</li><li>问题：要帮助对方理解、比较、决定，还是完成一个具体操作？</li><li>输入：有哪些真实材料、参考文章、图片和约束？哪些事实还不知道？</li><li>交付：最终需要一篇文章、一组海报、逐镜头脚本，还是完整视频？</li><li>验收：什么叫可以使用？谁确认事实，谁确认表达，谁批准发布？</li></ul><p>“做一条有传播力的视频”不是可执行任务。可以先缩小为：“面向第一次使用 AI 工作台的人，用一条短片解释从素材到定稿的过程；只采用已有界面和已确认功能，不编造使用效果。”这是一份任务定义示例，不是某次已发布视频的成绩。</p><h3>顺滑的表达，也要接受检查</h3><p>我在《AI写得越顺，越要警惕漂亮废话》中反复追问的，是文字有没有帮助人做决定。放进工作流以后，这可以成为审核时的四个问题：事实支撑在哪里？有没有一个具体动作？换个场景是否还成立？删掉漂亮的连接词，还剩多少有效信息？</p><p>人工审核不是把每句话重写一遍，而是守住不能交给模型猜的地方：真实经历、关键判断、责任边界和对外承诺。模型可以提出故事、镜头和表达方案，最终选择与验收仍由人负责。</p></section><section class="case-chapter" id="note-architecture" tabindex="-1" aria-labelledby="note-architecture-title"><h2 id="note-architecture-title">02 把能力接成一条流程</h2><p>我希望建设的不是一个什么都包办的聊天框，而是一条可追踪的创作流程。语言模型处理理解与结构，图像模块准备视觉素材，视频模块完成镜头生成；工作台保存任务、版本和状态，让人知道现在进行到哪里。</p><ol class="case-steps"><li>任务简报与事实包：明确受众、问题、已有材料、不能编造的事实和输出标准。</li><li>结构与脚本：先确定内容主线，再生成段落、分镜和提示词；用普通话复述提示词，检查是否偏离需求。</li><li>视觉参考：建立角色卡、场景图和关键帧，记录来源、授权及可变与不可变的特征。</li><li>分段生成与检查：逐镜头检查动作、画面、声音和衔接，问题留在当前环节解决。</li><li>编辑与交付：剪辑、字幕、声音、封面和导出检查，明确最终采用版本。</li><li>归档与复用：保存输入、参数、源文件、成品和复盘，下一次从可靠材料开始。</li></ol><h3>“本地”要分清三件事</h3><ul class="case-deliverables"><li>本地工作台：应用界面、文件或任务数据库在电脑上，模型仍可能通过在线服务调用。</li><li>本地模型推理：模型权重和计算在本机运行；搜索、插件和素材下载仍可能联网。</li><li>全离线流程：模型、素材、工具和依赖都已准备，并经过断网验证，才能这样描述。</li></ul><p>本地部署可以增加数据与执行环境的控制，但不是“天然绝对隐私”。遥测、云端备份、第三方节点和外部 API 都可能传输数据。在线模型也能通过受控工具连接本机；两种路线的区别，应看数据边界、成本、维护和任务效果，而不是谁天然拥有全部能力。</p><p>本机运行同样受显存、内存、上下文、磁盘、时间和模型许可限制。对需要持续处理私人材料、反复调用本地工具的任务，可以评估本地方案；对偶发任务，也要比较维护成本。不要把“不按次付费”理解成没有成本。</p><h3>智能体与机器人，是延伸方向</h3><p>把语言模型接到本地工具，能够形成“理解指令—提出步骤—调用工具—检查结果”的智能体设计。进一步连接硬件也可以作为研究方向，但机器人需要另外的感知、控制和安全系统；不能让大模型绕过权限确认，直接承担不受约束的物理控制。这里是架构设想，不是我已交付的机器人项目。</p></section><section class="case-chapter" id="note-language-model" tabindex="-1" aria-labelledby="note-language-model-title"><h2 id="note-language-model-title">03 语言模型、脚本与提示词</h2><h3>候选模型不等于实测结果</h3><p>Qwen3.8-27B 可以作为语言与素材理解的候选。官方模型卡列出了本地推理与兼容量化入口；它能理解图像和视频，不等于它负责生成视频。接入前要确认模型包、运行时、许可和本机资源，再用自己的任务样本比较。</p><ul class="article-source-links"><li><a href="https://huggingface.co/Qwen/Qwen3.8-27B" target="_blank" rel="noopener noreferrer">选型依据：Qwen3.8-27B 官方模型卡 <span aria-hidden="true">↗</span></a></li></ul><p>模型名称不是选型的全部。我的评估顺序是：能否按要求输出结构、能否区分事实与推测、能否处理足够长的材料、是否支持所需工具，以及失败后是否容易检查和恢复。不要只比较一个聊天回答是否好看。</p><h3>量化：按组件和任务选择</h3><div class="article-table" role="region" aria-label="精度是配置条件，不是作品质量的等级证书" tabindex="0"><table><caption>精度是配置条件，不是作品质量的等级证书</caption><thead><tr><th scope="col">精度路线</th><th scope="col">如何理解与选择</th></tr></thead><tbody><tr><th scope="row">FP32</th><td>较高精度、资源需求通常较大；并不自动意味着某次任务推理最好。</td></tr><tr><th scope="row">FP16 / BF16</th><td>常见的半精度路线。优先确认硬件、运行时与权重支持，再测实际显存。</td></tr><tr><th scope="row">INT8 等 8 位量化</th><td>可能减少权重占用，但速度和质量与量化方法、算子、模型组件有关，不能预设统一加速倍数。</td></tr><tr><th scope="row">INT4 / NVFP4 等低精度格式</th><td>格式并不相同。能否交付取决于兼容性与任务质量，不能一概限制为草稿。</td></tr></tbody></table></div><p>保存一份选型记录，比记住“统一用 8 位”更有用：模型与版本、组件精度、设备、上下文或分辨率、峰值资源、单次耗时、样本质量和失败类型。先跑通一个代表任务，再决定是否扩大。</p><h3>把剧本、分镜和提示词分别验收</h3><ul class="case-deliverables"><li>剧本：人先确定主题、人物关系、冲突或说明逻辑；模型补充候选表达，审核因果、事实和人物行为。</li><li>分镜：记录镜头目的、景别、主体、动作、时长、声音与前后关系。模板帮助遗漏检查，不应限制所有镜头只能采用一种写法。</li><li>提示词：明确主体、动作、环境、机位、参考素材和必须保留的约束；负向条件只在对应模型或节点支持时使用。</li></ul><p>提示词反向校验，就是让模型把它准备执行的内容重新说清楚，再与原任务对照。它能发现文字层的歧义，但不能替代实际出图、视频中的视觉检查。镜头时长应结合模型规格与剪辑需要，而不是把某个区间变成所有工具的规则。</p><figure class="article-prompt"><figcaption>可以复用的任务简报 · 可选择文字复制</figcaption><pre>目标与受众：这份内容帮助谁解决什么问题？
+已确认材料：列出事实、来源、参考图及使用权限。
+待确认事项：明确缺失的信息，不自行补全。
+输出形式：篇幅、平台、结构、镜头或文件格式。
+必须保留：主题、人物特征、事实和品牌约束。
+先交付：结构方案与关键假设，确认后再展开。
+验收：逐项对应输入；将事实、建议与推测分开。
+执行边界：只处理批准的材料，发布和外部操作另行确认。</pre></figure></section><section class="case-chapter" id="note-image-workflow" tabindex="-1" aria-labelledby="note-image-workflow-title"><h2 id="note-image-workflow-title">04 图像：先把参考素材做好</h2><p>在视频创作链路里，图像可以先承担“把抽象描述变成稳定参考”的任务：角色长什么样、穿什么衣服、场景光线如何、关键动作从哪里开始。独立图片当然也可以是成品；这里关注的是它怎样为后续镜头提供依据。</p><div class="article-table" role="region" aria-label="三种图像任务，对应三类交付" tabindex="0"><table><caption>三种图像任务，对应三类交付</caption><thead><tr><th scope="col">任务</th><th scope="col">适合解决的问题</th><th scope="col">检查重点</th></tr></thead><tbody><tr><th scope="row">文生图</th><td>从描述生成角色概念、环境和风格候选。SD、FLUX 等路线需按具体版本选择。</td><td>主体、风格和构图是否符合任务；不把候选稿当最终角色设定。</td></tr><tr><th scope="row">图生图</th><td>基于现有参考调整风格、构图或细节，减少从零反复描述。</td><td>身份、比例、姿态和背景是否出现不希望的变化。</td></tr><tr><th scope="row">局部编辑 / Inpaint</th><td>使用蒙版修改衣服、物件、背景或缺失区域。</td><td>蒙版边界与未编辑区域是否受影响；“局部”不代表其他像素一定不变。</td></tr></tbody></table></div><h3>角色卡和场景卡，应该包含什么</h3><ul class="case-deliverables"><li>角色卡：可辨认特征、服装、配色、表情与必要视角；区分固定身份和允许变化的动作。</li><li>场景卡：空间位置、光向、主要物件与色调；标出镜头之间应该一致的部分。</li><li>关键帧：每个镜头的起始或结束状态，避免只给一张漂亮但无法承接动作的图。</li><li>素材记录：来源、许可、版本和采用原因；真人形象、客户素材与商标要有适当使用权限。</li></ul><h3>ControlNet 是引导，不是结构保证书</h3><p>ControlNet 可以把姿态、边缘、深度等条件接入生成过程，帮助控制结构。底模兼容性、预处理、强度和作用区间都会影响结果，仍需检查偏移。不要把它描述为“整体结构绝对不变”。</p><ul class="article-source-links"><li><a href="https://docs.comfy.org/tutorials/controlnet/controlnet" target="_blank" rel="noopener noreferrer">控制条件与参数：ComfyUI ControlNet 文档 <span aria-hidden="true">↗</span></a></li></ul><p>实际搭建时，可以从基础模型加一个必要控制模块开始，逐项增加 LoRA 或其他条件。一次只改变一个关键变量，才知道改善或冲突来自哪里。“最多两个组件”可以是简化实验的个人策略，不是通用技术上限。参考素材的分辨率也应以用途和下游输入为准，不追求无意义的大图。</p></section><section class="case-chapter" id="note-video-workflow" tabindex="-1" aria-labelledby="note-video-workflow-title"><h2 id="note-video-workflow-title">05 视频：分镜、参数与连续性</h2><h3>MiniMax H3 的两条输入路线</h3><p>H3-Base-FL2VA 支持文字及首帧、尾帧或首尾帧条件；H3-Base-Ref2VA 接收图像、视频和音频参考。官方目前列出的输出规格包括 24fps、4—15 秒。它们分别服务不同的素材条件，不能把 FL2VA 简化成只有文生视频。</p><p>要区分开放的 H3-Base 与完整系统中的上下文处理、高分辨率再生成组件。本地部署基础模型，不代表已经复现整套官方服务；也不能把写稿用的 Qwen3.8-27B 当作视频模型内部编码器随意替换。</p><ul class="article-source-links"><li><a href="https://github.com/MiniMax-AI/MiniMax-H3" target="_blank" rel="noopener noreferrer">模型输入、输出与开放范围：MiniMax H3 官方仓库 <span aria-hidden="true">↗</span></a></li></ul><h3>草稿与精修，是两个验收阶段</h3><p>先用成本可控的配置确认叙事、构图、动作与衔接，再对采用镜头调整细节和输出规格。这个两阶段方法可以保留，但不能承诺第二次生成只补细节、不改变画面。改变模型、尺寸或采样路径后，即使用同一个种子，也要重新检查结果。</p><p>ComfyUI 当前 H3 原生工作流说明以 20 步为默认，并允许提高步数；低步数加速需配套权重或 LoRA。文生／首尾帧路线的 8 步 Turbo 与参考路线的 4 步 Turbo 不是同一配置，不能互抄。下面保留参数检查项目，不提供未经设备验证的一键配方。</p><ul class="article-source-links"><li><a href="https://docs.comfy.org/tutorials/video/minimax/minimax-h3-native" target="_blank" rel="noopener noreferrer">具体工作流与 Turbo 条件：ComfyUI H3 原生指南 <span aria-hidden="true">↗</span></a></li></ul><div class="article-table" role="region" aria-label="每次实验应记录的参数" tabindex="0"><table><caption>每次实验应记录的参数</caption><thead><tr><th scope="col">项目</th><th scope="col">使用原则</th></tr></thead><tbody><tr><th scope="row">模型与精度</th><td>记录各组件的实际权重与格式，不要求语言、扩散、编码器和 VAE 全部使用同一精度。</td></tr><tr><th scope="row">采样步数</th><td>从匹配的官方模板开始；少步数必须与对应加速方案配套，增加步数也要验证收益。</td></tr><tr><th scope="row">CFG / 引导方式</th><td>先确认工作流是否暴露并使用此参数；不把 6、7、8 当作跨模型“听话程度”刻度。</td></tr><tr><th scope="row">LoRA 与权重</th><td>区分风格、加速与细节用途，记录名称和兼容性；没有通用的修脸权重上限。</td></tr><tr><th scope="row">分辨率与边界</th><td>按模型支持的尺寸与对齐要求设置；草稿降分辨率前先确认可用，不默认固定补 16 像素。</td></tr><tr><th scope="row">帧率与时长</th><td>H3 当前按其 24fps 规格工作；其他模型另查。短镜头是制作策略，不把 12 秒当能力上限。</td></tr><tr><th scope="row">降噪 / 重绘强度</th><td>仅在所用编辑路径支持时调整；对比参考、边界与细节变化，不承诺只修模糊。</td></tr><tr><th scope="row">随机种子</th><td>记录种子便于同条件对照，同时记录模型、输入与节点版本；它不是身份或构图的绝对锁。</td></tr><tr><th scope="row">耗时与资源</th><td>分别记录单次生成、重试与后期成本；同条件测量，不预设提速三倍或某显存必能启动。</td></tr></tbody></table></div><p>原笔记中的“Chicken Attention”未找到对应官方名称，不能直接作为安装建议。ComfyUI 文档列有 Comfy Kitchen Attention，并提示其与部分 INT8-ConvRot 权重存在兼容问题。注意力后端与加速 LoRA 都要按版本选择；先检查能否运行，再比较速度、运动、文字和声音质量。</p><ul class="article-source-links"><li><a href="https://docs.comfy.org/tutorials/video/minimax/minimax-h3" target="_blank" rel="noopener noreferrer">注意力后端兼容性：ComfyUI H3 总览 <span aria-hidden="true">↗</span></a></li></ul><h3>长视频，重点是镜头之间能否接起来</h3><ul class="case-deliverables"><li>人物与环境漂移：复用经过确认的角色、场景和参考素材；每个镜头同时检查身份与光线，不把相同提示词当一致性保证。</li><li>动作与物理问题：把复杂连续动作拆成可检查的片段，关注接触、遮挡和运动方向；必要时回到分镜或实拍参考，而不是只增加形容词。</li><li>指令遗漏与多余元素：生成前检查文字约束，生成后逐项检查画面、字幕和声音；不支持的负向参数不要硬套。</li><li>镜头衔接：可尝试用前一镜头末帧作为下一镜头参考，同时核对视线、动线、构图和声音过渡；参考帧不能保证无缝。</li></ul><p>剧本、分镜和提示词是三个不同的瓶颈。成片不好时，先判断问题属于哪层：故事没有成立，就先改结构；动作无法承接，就改镜头；描述有歧义，再改提示词。最后再决定是否需要更重的生成配置。</p></section><section class="case-chapter" id="note-workbench-practice" tabindex="-1" aria-labelledby="note-workbench-practice-title"><h2 id="note-workbench-practice-title">06 我的工作台实践</h2><p>前面的全链路是技术方案。已有实践中，我更确定的一步，是先把文案从一次聊天整理成可恢复、可审核的任务。在闪聚星球 AI 文案工作台中，我负责创作流程、研究与编辑机制、作品管理设计，并借助 AI 与 Codex 推进实现。</p><h3>四个入口，共用一套任务与版本管理</h3><ul class="case-deliverables"><li>朋友圈计划：输入主题、目标和周期，组织逐日内容及互动承接。</li><li>生活案例：从本人提供的事实与照片开始，把已确认、可见、待确认和隐私信息分开，不借外部搜索补造经历。</li><li>小红书：面向具体选题组织笔记结构、正文和配图思路，材料与写作任务保持对应。</li><li>抖音：围绕受众和主题组织口播或脚本；生成内容与实际发布分开。</li></ul><p>JEV 新版普通任务从主题事实、受众处境与业务关联三个方向研究，再经过写作与编辑。研究员、文案、主编是 AI 角色，不是三名真实员工。IP 资料提供身份、表达和业务边界，事实材料提供依据，最后仍由使用者决定采用。</p><h3>一个有记录的任务：七天预热内容包</h3><p>9 月 27 日保存的一次任务，以“周末脱单局，提前 7 天温柔预热”为输入，面向朋友圈沟通。记录保留了研究、写作、审核和版本 2 最终稿；每一天都有内容目的、正文和互动承接。</p><p>其中第 2 天聚焦参与者应该先问清哪些规则：交流形式、拒绝交换联系方式的权利、信息保管和退出方式。它的价值在于把“让人愿意参加”的笼统目标，转成读者可以逐项核实的问题；未知的时间、费用与人数不提前承诺。</p><p>这份记录证明一次内容任务的交付，不代表文案已经发布、活动已经举办或产生报名转化。对应项目案例保留了任务过程与稿件节选。</p><ul class="article-source-links"><li><a href="/work/ai-copy-workbench/#case-ai-copy-workbench-5">查看闪聚星球任务记录与实际稿件</a></li></ul><h3>真正影响连续使用的，是失败时怎么办</h3><p>一次重要修正，是把搜索候选摘要与实际正文分开：摘要用于筛选，不能因为详情没有加载，就被当成正文去改写或发布。身份与来源需要核验，页面显示、复制和导出也要对应同一份文字。</p><p>另一项机制是保存版本与阶段。修改稿已经保存、审核暂时中断时，应接着审核，而不是重新生成整份稿件；失败记录不能覆盖成功内容。素材变更也需要保留旧稿对应的输入，才能解释作品为什么变成现在这样。</p><p>真实平台的素材获取与正文核验仍有未完成的验证；配图方案是文字和提示词，不等于已生成图片。这里展示的是具体机制与已有交付，不把局部记录写成整条线上流程已验收。</p></section><section class="case-chapter" id="note-knowledge-and-delivery" tabindex="-1" aria-labelledby="note-knowledge-and-delivery-title"><h2 id="note-knowledge-and-delivery-title">07 让经验能够重复使用</h2><p>我在知识库相关稿件里想表达的，不是“存得越多越好”，而是减少重复思考，让经验在下一次任务里能被调用。资料如果只有标题和收藏链接，下次仍然要重新理解；真正可复用的单位，应该包含问题、做法、结果和适用条件。</p><div class="article-table" role="region" aria-label="把资料库整理成可调用的经验" tabindex="0"><table><caption>把资料库整理成可调用的经验</caption><thead><tr><th scope="col">保留什么</th><th scope="col">下一次如何使用</th></tr></thead><tbody><tr><th scope="row">任务与事实</th><td>知道材料回答什么问题，哪些结论有来源，哪些仍待确认。</td></tr><tr><th scope="row">故事与分镜模板</th><td>复用结构、镜头目的和节奏，不把旧客户、人物经历或效果搬到新任务。</td></tr><tr><th scope="row">提示词与约束</th><td>保存输入条件、模板版本和适用模型；不只保存一段脱离情境的“神提示词”。</td></tr><tr><th scope="row">角色与场景素材</th><td>记录版权或授权、固定特征和采用版本，避免复用到不允许的场景。</td></tr><tr><th scope="row">结果与复盘</th><td>保存最终采用稿、被放弃的原因、参数和失败类型，让下一次有据可查。</td></tr></tbody></table></div><h3>人机分工，要写到任务里</h3><p>人负责定义问题、选择方向、确认事实与对外承担责任；AI 协助研究、整理、生成候选、格式转换和检查。工作台负责保存、串接与提示状态。涉及发布、付费、账户、删除或外部通知的动作应单独确认，不能因为前一步生成成功就自动继续。</p><p>Codex 可以参与把需求拆成模块、把流程做成界面，并协助调试和验证；这不意味着代码生成后无需测试。我的重点仍是把人、材料、工具和交付接起来：谁输入，谁审核，什么条件进入下一步，失败以后怎么继续。</p><ul class="article-source-links"><li><a href="/work/opc-ai-workflow/#case-opc-ai-workflow-6">查看 OPC 与 AI 工作流中的人机分工</a></li></ul><h3>交付前的检查，而不是永久不变的口诀</h3><ul class="case-deliverables"><li>任务、素材、模型与版本是否对得上？是否保留原始输入和采用记录？</li><li>人物、引用、数字与经历有没有来源？未知内容是否仍然清楚标识？</li><li>图像与视频有没有身份变化、物理错误、文字错误或不连贯的声音？</li><li>参数与插件是否适用于当前模型？是否把一次经验错误推广为通用规则？</li><li>私人材料、密钥、账户信息是否留在内部？发布前是否已获得所需授权？</li><li>最终文件能否打开、阅读和播放？是否符合目标平台的尺寸、字幕与声音要求？</li><li>失败能否恢复？原稿是否仍保留？使用者能否确定哪一个是最终版本？</li></ul></section><section class="case-chapter" id="note-next-and-sources" tabindex="-1" aria-labelledby="note-next-and-sources-title"><h2 id="note-next-and-sources-title">08 从一个任务开始迭代</h2><p>我更愿意从一个明确、重复发生的任务开始完善工作台：固定输入，跑通结构与输出，找出最费时间或最容易出错的环节，再决定增加哪项能力。不是先把全部模型装好，才开始寻找用途。</p><ol class="case-steps"><li>先验证文字任务：用已有事实完成一份能被审核的文章或脚本，并保留采用与修改记录。</li><li>再验证图像任务：用同一个角色或场景做参考素材，检查结构、权限和后续可用性。</li><li>再验证一个视频镜头：从匹配的官方模板开始，记录模型、硬件、参数、耗时与实际画面。</li><li>最后连接多个环节：只在单项能力可检查、失败可恢复时增加调度，不把“连起来”当作“已经可靠”。</li></ol><p>长期要沉淀的是三种东西：故事与说明结构的模板、不同镜头目的的分镜模板、带适用条件的提示词与约束库。同时保留失败样例和修改原因，让更新来自实际问题，而不是不断更换工具名称。</p><p>本文尚未给出我的本地 Qwen / H3 全链路硬件实测、生成速度或成片效果。补齐模型版本、设备、输入、运行日志和可公开样片后，才适合把相应部分从选型笔记更新为实测案例。</p><h3>本文融合的既有文章</h3><ul class="case-deliverables"><li>《AI把生成成本打下来以后，什么能力反而更贵》：问题定义、判断与交付。</li><li>《AI时代真正需要的不是会用软件的人》：先理解任务，再选择工具。</li><li>《AI写得越顺，越要警惕漂亮废话》：把内容变成能够检查的具体表达。</li><li>《做知识库不是为了装资料》：让经验可以被调用，而不只是积累文件。</li></ul><p>全链路部分参考《本地AI全链路创作工作台·个人知识库》笔记，围绕架构、语言、图像、视频、避坑、迭代和学习资源七个主题，结合既有文章讨论一套可检查的工作方法。模型规格与参数应以对应版本的官方说明为依据，并结合任务和设备验证适用条件。</p><h3>进一步阅读：从官方入口核对配置</h3><ul class="article-source-links"><li><a href="https://huggingface.co/Qwen/Qwen3.8-27B" target="_blank" rel="noopener noreferrer">Qwen3.8-27B：模型与推理入口 <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/MiniMax-AI/MiniMax-H3" target="_blank" rel="noopener noreferrer">MiniMax H3：权重范围与模型规格 <span aria-hidden="true">↗</span></a></li><li><a href="https://docs.comfy.org/tutorials/video/minimax/minimax-h3-native" target="_blank" rel="noopener noreferrer">ComfyUI H3：原生工作流与参数 <span aria-hidden="true">↗</span></a></li><li><a href="https://docs.comfy.org/tutorials/video/minimax/minimax-h3" target="_blank" rel="noopener noreferrer">ComfyUI H3：后端兼容与排错 <span aria-hidden="true">↗</span></a></li><li><a href="https://huggingface.co/Comfy-Org/MiniMax-H3" target="_blank" rel="noopener noreferrer">Comfy-Org H3：组件与权重文件 <span aria-hidden="true">↗</span></a></li><li><a href="https://docs.comfy.org/tutorials/controlnet/controlnet" target="_blank" rel="noopener noreferrer">ComfyUI ControlNet：条件控制方法 <span aria-hidden="true">↗</span></a></li></ul><p>引用或复用配套口播稿与第三方教程前，应核对内容、来源、版本、访问权限与使用授权；未经核验的脚本或临时签名链接不宜直接作为学习资源。真正可复用的不是一张永远正确的参数表，而是一套能解释选择、检查结果、保留经验的工作方法。</p></section></div>
+    </div>
+    <nav class="article-next" aria-label="从方法到项目"><span class="eyebrow">从方法到项目</span><h2>看具体的工作与交付</h2><div class="case-references"><a href="/work/opc-ai-workflow/">OPC 与 AI 工作流</a><a href="/work/ai-copy-workbench/">闪聚星球文案工作台</a><a href="/work/kuaizhai-web-clipper/">快摘：从采集到资料复用</a></div></nav>
+    <div class="detail-back"><a class="primary-action" href="/work/">继续浏览作品集 <span aria-hidden="true">→</span></a><a href="/about/">返回关于我</a></div>
+  </article></main>
+  <footer class="site-footer site-footer-compact">
+    <div class="page-shell footer-inner">
+
+      <div class="footer-links"><a href="/work/">完整作品集</a><a href="/resume/">项目经历</a><a href="mailto:michalflowers245@gmail.com">michalflowers245@gmail.com</a></div>
+    </div>
+    <div class="footer-bottom page-shell"><span>张熙 · ZHANG XI</span><span>总办助理 · AI应用与资源协同</span><a href="#main-content">回到顶部 ↑</a></div>
+  </footer>
+
+</body>
+</html>
