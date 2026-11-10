@@ -1,6 +1,6 @@
-import { initGalleries } from './gallery.mjs?v=f1437047017d759e';
-import { initFolio } from './folio.mjs?v=f1437047017d759e';
-import { initReadingState } from './reading-state.mjs?v=f1437047017d759e';
+import { initGalleries } from './gallery.mjs?v=ca7cd919cc3467e1';
+import { initFolio } from './folio.mjs?v=ca7cd919cc3467e1';
+import { initReadingState } from './reading-state.mjs?v=ca7cd919cc3467e1';
 
 const lifetime = new AbortController();
 // Secondary scene controls stay available without occupying the main reading path.
@@ -28,6 +28,45 @@ if(homeHero){
 const galleries=initGalleries(lifetime.signal);
 const folio=initFolio(lifetime.signal);
 initReadingState(galleries,folio,lifetime.signal);
+// A local reading index follows the visible category without moving the page or focus.
+for(const collection of document.querySelectorAll('.cdg-collection')){
+ const nav=collection.querySelector('[data-category-nav]');
+ if(!nav)continue;
+ const links=[...nav.querySelectorAll('a[href^="#"]')];
+ const groups=links.map(link=>document.getElementById(link.hash.slice(1)));
+ const header=document.querySelector('.site-header');
+ let frame=0,measureFrame=0;
+ const update=()=>{
+  frame=0;
+  const sticky=collection.dataset.categoryMode==='compact';
+  const threshold=header.getBoundingClientRect().bottom+(sticky?nav.getBoundingClientRect().height+8:0)+32;
+  let active=0;groups.forEach((group,i)=>{if(group&&group.getBoundingClientRect().top<=threshold+1)active=i;});
+  links.forEach((link,i)=>{if(i===active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
+ };
+ const scheduleUpdate=()=>{if(!frame)frame=requestAnimationFrame(update);};
+ const measure=()=>{
+  measureFrame=0;
+  const headerHeight=header.getBoundingClientRect().height;
+  const labelSize=parseFloat(getComputedStyle(links[0].lastElementChild).fontSize);
+  const small=innerWidth<=780;
+  const compact=small&&innerHeight>=600&&labelSize<=22&&nav.getBoundingClientRect().height<innerHeight*.22;
+  const rail=!small&&innerHeight>=640&&nav.scrollHeight+headerHeight+36<innerHeight;
+  collection.dataset.categoryMode=compact?'compact':rail?'rail':'flow';
+  collection.style.setProperty('--category-header-height',headerHeight+'px');
+  const scrollPadding=parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0;
+  const landing=headerHeight+(compact?nav.getBoundingClientRect().height+24:24);
+  collection.style.setProperty('--category-clearance',Math.max(0,landing-scrollPadding)+'px');
+  scheduleUpdate();
+ };
+ const scheduleMeasure=()=>{if(!measureFrame)measureFrame=requestAnimationFrame(measure);};
+ const observer=new ResizeObserver(scheduleMeasure);observer.observe(nav);observer.observe(header);
+ addEventListener('scroll',scheduleUpdate,{passive:true,signal:lifetime.signal});
+ addEventListener('resize',scheduleMeasure,{signal:lifetime.signal});
+ addEventListener('pageshow',scheduleMeasure,{signal:lifetime.signal});
+ document.fonts?.ready.then(()=>{if(!lifetime.signal.aborted)scheduleMeasure();});
+ lifetime.signal.addEventListener('abort',()=>{observer.disconnect();cancelAnimationFrame(frame);cancelAnimationFrame(measureFrame);},{once:true});
+ measure();update();
+}
 for(const button of document.querySelectorAll('[data-wrap-code]')){
   const pre=button.closest('.implementation').querySelector('pre');
   const setWrapped=wrapped=>{
@@ -59,18 +98,24 @@ for(const button of document.querySelectorAll('[data-copy-code]')){
 }
 for(const button of document.querySelectorAll('[data-copy-email]')) {
   button.hidden=false;
+  const label=button.textContent;let pending=false,resetTimer=0;
+  lifetime.signal.addEventListener('abort',()=>clearTimeout(resetTimer),{once:true});
   button.addEventListener('click',async()=>{
+    if(pending)return;pending=true;clearTimeout(resetTimer);button.textContent=label;button.setAttribute('aria-busy','true');
     const feedback=button.closest('.contact-card').querySelector('[data-contact-feedback]');
     try {
       if(!navigator.clipboard?.writeText)throw new Error('Clipboard unavailable');
       await navigator.clipboard.writeText(button.dataset.copyEmail);
-      feedback.textContent='邮箱已复制，可以粘贴到邮件应用。';
+      if(lifetime.signal.aborted)return;
+      button.textContent='已复制';feedback.textContent='邮箱已复制，可以粘贴到邮件应用。';
+      resetTimer=setTimeout(()=>{button.textContent=label;},2000);
     } catch {
+      if(lifetime.signal.aborted)return;
       const address=button.closest('.contact-card').querySelector('.contact-email');
       const range=document.createRange();range.selectNodeContents(address);
       const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);
-      feedback.textContent='未能自动复制。邮箱已选中，请按系统复制快捷键，或直接点击邮箱。';
-    }
+      feedback.textContent='邮箱已选中，请使用系统复制，或直接点击邮箱发送邮件。';
+    } finally {pending=false;button.removeAttribute('aria-busy');}
   },{signal:lifetime.signal});
 }
 for(const button of document.querySelectorAll('[data-print-resume]')) {
@@ -85,11 +130,12 @@ if(toc) {
   const toggle=toc.querySelector('[data-case-toc-toggle]');
   const current=toc.querySelector('[data-case-toc-current]');
   const action=toc.querySelector('[data-case-toc-action]');
+  const next=toc.querySelector('[data-case-next]');
   const list=toc.querySelector('ol');
   const links=[...list.querySelectorAll('a')];
   const sections=links.map(link=>document.getElementById(link.hash.slice(1)));
   const header=document.querySelector('.site-header');
-  let expanded=false,frame=0,measureFrame=0,mode='flow';
+  let expanded=false,frame=0,measureFrame=0,mode='flow',activeIndex=-1;
   const render=()=>{
     const compact=mode==='compact';
     toggle.hidden=!compact;
@@ -126,6 +172,14 @@ if(toc) {
     let active=0;
     sections.forEach((section,i)=>{if(section.getBoundingClientRect().top<=threshold)active=i;});
     links.forEach((link,i)=>{if(i===active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
+    if(next&&active!==activeIndex){
+      const following=sections[active+1];
+      next.setAttribute('href',following?'#'+following.id:'#related-work');
+      next.setAttribute('aria-label',following?'下一节：'+following.querySelector('h2').textContent:'继续浏览相关项目');
+      next.title=next.getAttribute('aria-label');
+      next.querySelector('.case-next-label').textContent=following?'下一节':'相关项目';
+      activeIndex=active;
+    }
     const title=sections[active].querySelector('h2').textContent;
     if(current.textContent!==title){current.textContent=title;render();}
   };
@@ -149,7 +203,7 @@ if(toc) {
 // Keep chapter links shareable without adding history entries that would trap
 // the detail page's "return to reading" action inside its own table of contents.
 document.addEventListener('click',event=>{
-  const link=event.target.closest('#case-toc-links a[href^="#"],a[data-evidence-link],a[data-implementation-link],a[data-story-link]');
+  const link=event.target.closest('#case-toc-links a[href^="#"],a[data-evidence-link],a[data-implementation-link],a[data-story-link],a[data-case-next]');
   if(!link||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
   const section=document.getElementById(link.hash.slice(1));
   if(!section)return;
@@ -171,10 +225,10 @@ for(const figure of document.querySelectorAll('[data-project-art]')){
  if(!projectViewerURL||!activate)continue;
  activate.hidden=false;
  const initialize=async()=>{
-  if(initialized||loading||lifetime.signal.aborted)return;loading=true;activate.setAttribute('aria-busy','true');
+  if(initialized||loading||lifetime.signal.aborted)return;loading=true;activate.setAttribute('aria-busy','true');activate.textContent='准备动画…';
   try{const module=await loadProjectModule();if(!lifetime.signal.aborted){module.mountProjectViewer(figure);initialized=true;}}
-  catch(error){status.textContent='3D 暂时无法加载，封面与案例仍可浏览；可以再次尝试。';console.warn('Project sculpture fallback',error);}
-  finally{loading=false;activate.removeAttribute('aria-busy');}
+  catch(error){status.textContent='3D 暂时无法加载，封面与案例仍可浏览；可以再次尝试。';activate.textContent='重试动画';console.warn('Project sculpture fallback',error);}
+  finally{loading=false;if(!initialized)activate.removeAttribute('aria-busy');}
  };
  activate.addEventListener('click',initialize,{signal:lifetime.signal});
  const observer=new IntersectionObserver(changes=>{if(changes.some(e=>e.isIntersecting)){observer.disconnect();initialize();}},{threshold:0});
