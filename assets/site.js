@@ -1,8 +1,19 @@
-import { initGalleries } from './gallery.mjs?v=cb7bd6f2f8e58327';
-import { initFolio } from './folio.mjs?v=cb7bd6f2f8e58327';
-import { initReadingState } from './reading-state.mjs?v=cb7bd6f2f8e58327';
+import { initGalleries } from './gallery.mjs?v=f1437047017d759e';
+import { initFolio } from './folio.mjs?v=f1437047017d759e';
+import { initReadingState } from './reading-state.mjs?v=f1437047017d759e';
 
 const lifetime = new AbortController();
+// Secondary scene controls stay available without occupying the main reading path.
+for(const more of document.querySelectorAll('[data-cosmic-more]')){
+ const summary=more.querySelector('summary');
+ more.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&more.open){event.preventDefault();event.stopPropagation();more.open=false;summary.focus({preventScroll:true});}
+ },{capture:true,signal:lifetime.signal});
+ more.addEventListener('click',event=>{
+  if(event.target.closest('button')){more.open=false;summary.focus({preventScroll:true});}
+ },{signal:lifetime.signal});
+ document.addEventListener('click',event=>{if(more.open&&!more.contains(event.target))more.open=false;},{signal:lifetime.signal});
+}
 // Header changes surface without changing document height or intercepting scroll.
 const homeHero=document.getElementById('home-intro');
 if(homeHero){
