@@ -1,6 +1,6 @@
-import { initGalleries } from './gallery.mjs?v=fc3a029c3ef3a585';
-import { initFolio } from './folio.mjs?v=fc3a029c3ef3a585';
-import { initReadingState } from './reading-state.mjs?v=fc3a029c3ef3a585';
+import { initGalleries } from './gallery.mjs?v=ad0ec7f577c834f8';
+import { initFolio } from './folio.mjs?v=ad0ec7f577c834f8';
+import { initReadingState } from './reading-state.mjs?v=ad0ec7f577c834f8';
 
 const lifetime = new AbortController();
 // Header changes surface without changing document height or intercepting scroll.
