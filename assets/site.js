@@ -1,19 +1,8 @@
-import { initGalleries } from './gallery.mjs?v=db7c7da8fb7dbeeb';
-import { initFolio } from './folio.mjs?v=db7c7da8fb7dbeeb';
-import { initReadingState } from './reading-state.mjs?v=db7c7da8fb7dbeeb';
+import { initGalleries } from './gallery.mjs?v=b74e49b92e6e8448';
+import { initFolio } from './folio.mjs?v=b74e49b92e6e8448';
+import { initReadingState } from './reading-state.mjs?v=b74e49b92e6e8448';
 
 const lifetime = new AbortController();
-// Secondary scene controls stay available without occupying the main reading path.
-for(const more of document.querySelectorAll('[data-cosmic-more]')){
- const summary=more.querySelector('summary');
- more.addEventListener('keydown',event=>{
-  if(event.key==='Escape'&&more.open){event.preventDefault();event.stopPropagation();more.open=false;summary.focus({preventScroll:true});}
- },{capture:true,signal:lifetime.signal});
- more.addEventListener('click',event=>{
-  if(event.target.closest('button')){more.open=false;summary.focus({preventScroll:true});}
- },{signal:lifetime.signal});
- document.addEventListener('click',event=>{if(more.open&&!more.contains(event.target))more.open=false;},{signal:lifetime.signal});
-}
 // Header changes surface without changing document height or intercepting scroll.
 const homeHero=document.getElementById('home-intro');
 if(homeHero){
@@ -48,10 +37,8 @@ for(const collection of document.querySelectorAll('.cdg-collection')){
   measureFrame=0;
   const headerHeight=header.getBoundingClientRect().height;
   const labelSize=parseFloat(getComputedStyle(links[0].lastElementChild).fontSize);
-  const small=innerWidth<=780;
-  const compact=small&&innerHeight>=600&&labelSize<=22&&nav.getBoundingClientRect().height<innerHeight*.22;
-  const rail=!small&&innerHeight>=640&&nav.scrollHeight+headerHeight+36<innerHeight;
-  collection.dataset.categoryMode=compact?'compact':rail?'rail':'flow';
+  const compact=innerHeight>=600&&labelSize<=22&&nav.getBoundingClientRect().height<innerHeight*.22;
+  collection.dataset.categoryMode=compact?'compact':'flow';
   collection.style.setProperty('--category-header-height',headerHeight+'px');
   const scrollPadding=parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0;
   const landing=headerHeight+(compact?nav.getBoundingClientRect().height+24:24);
@@ -216,30 +203,28 @@ document.addEventListener('click',event=>{
 document.documentElement.dataset.enhanced='ready';
 window.addEventListener('pagehide',event=>{if(!event.persisted)lifetime.abort();},{signal:lifetime.signal});
 
-// Load project scenes as they enter the viewport; no activation click is needed.
+// Load the shared scene module when its artwork becomes visible.
 const projectViewerURL=document.querySelector('script[data-project-module]')?.dataset.projectModule;
-let projectModule;
-const loadProjectModule=()=>projectModule||(projectModule=import(projectViewerURL).catch(error=>{projectModule=null;throw error;}));
-for(const figure of document.querySelectorAll('[data-project-art]')){
- const activate=figure.querySelector('[data-project-activate]'),status=figure.querySelector('[data-project-art-status]');let initialized=false,loading=false;
- if(!projectViewerURL||!activate)continue;
- activate.hidden=false;
- const initialize=async()=>{
-  if(initialized||loading||lifetime.signal.aborted)return;loading=true;activate.setAttribute('aria-busy','true');activate.textContent='准备动画…';
-  try{const module=await loadProjectModule();if(!lifetime.signal.aborted){module.mountProjectViewer(figure);initialized=true;}}
-  catch(error){status.textContent='3D 暂时无法加载，封面与案例仍可浏览；可以再次尝试。';activate.textContent='重试动画';console.warn('Project sculpture fallback',error);}
-  finally{loading=false;if(!initialized)activate.removeAttribute('aria-busy');}
- };
- activate.addEventListener('click',initialize,{signal:lifetime.signal});
- const observer=new IntersectionObserver(changes=>{if(changes.some(e=>e.isIntersecting)){observer.disconnect();initialize();}},{threshold:0});
- observer.observe(figure);lifetime.signal.addEventListener('abort',()=>observer.disconnect(),{once:true});
-}
-const firstCover=document.querySelector('[data-orbital-cover]');
-if(projectViewerURL&&firstCover){
- const covers=[...document.querySelectorAll('[data-orbital-cover]')];let requested=false;
- const observer=new IntersectionObserver(changes=>{
-  if(requested||!changes.some(e=>e.isIntersecting))return;requested=true;observer.disconnect();
-  loadProjectModule().then(module=>{if(!lifetime.signal.aborted)module.mountProjectCovers();}).catch(error=>console.warn('Automatic project covers fallback',error));
- },{threshold:0});covers.forEach(cover=>observer.observe(cover));
- lifetime.signal.addEventListener('abort',()=>observer.disconnect(),{once:true});
+if(projectViewerURL){
+ let projectModule;
+ const load=()=>projectModule ||= import(projectViewerURL).catch(error=>{
+  projectModule=null;
+  throw error;
+ });
+ function whenVisible(elements,mount){
+  if(!elements.length)return;
+  const observer=new IntersectionObserver(entries=>{
+   if(!entries.some(entry=>entry.isIntersecting))return;
+   observer.disconnect();
+   load().then(module=>{
+    if(!lifetime.signal.aborted)mount(module);
+   }).catch(error=>console.warn('Project scene unavailable; the poster remains available.',error));
+  });
+  for(const element of elements)observer.observe(element);
+  lifetime.signal.addEventListener('abort',()=>observer.disconnect(),{once:true});
+ }
+ for(const figure of document.querySelectorAll('[data-project-art]')){
+  whenVisible([figure],module=>module.mountProjectViewer(figure));
+ }
+ whenVisible(document.querySelectorAll('[data-orbital-cover]'),module=>module.mountProjectCovers());
 }
