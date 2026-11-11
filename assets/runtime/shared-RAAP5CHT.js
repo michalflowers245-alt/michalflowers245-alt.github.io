@@ -1,4 +1,4 @@
-import{a as Ng}from"./shared-KTY3R5R4.js";/**
+import{a as Ng}from"./shared-U5ZO7EKM.js";/**
  * @license
  * Copyright 2010-2026 Three.js Authors
  * SPDX-License-Identifier: MIT
