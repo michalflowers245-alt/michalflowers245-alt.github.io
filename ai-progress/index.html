@@ -289,22 +289,26 @@
       clearTimeout(updateTimer);
       fetchInProgress = true;
       refreshButton.disabled = true;
-      let comments;
       try {
+        const reads = [];
         if (Date.now() >= mirrorRetryAt) {
-          try {
-            comments = await readMirror();
-          } catch {
+          reads.push(readMirror().catch(error => {
             mirrorRetryAt = Date.now() + 120_000;
-          }
+            throw error;
+          }));
         }
-        if (!comments && Date.now() >= Math.max(restRetryAt, restNextFetchAt)) comments = await readRest();
-        if (!comments) throw new Error(Math.max(restRetryAt, restNextFetchAt) > Date.now() ? "rate-limit" : "network");
+        if (Date.now() >= Math.max(restRetryAt, restNextFetchAt)) reads.push(readRest());
+        const results = await Promise.allSettled(reads.map(async read => {
+          absorb(await read);
+          render();
+        }));
+        if (!results.some(result => result.status === "fulfilled")) {
+          throw new Error(Math.max(restRetryAt, restNextFetchAt) > Date.now() ? "rate-limit" : "network");
+        }
 
-        absorb(comments);
-        render();
         refreshedAt = Date.now();
-        announce("自动刷新已开启 · " + formatTime.format(refreshedAt) + " 北京时间");
+        const latestTime = latestCommentTime ? " · 最新变更 " + formatTime.format(latestCommentTime) : "";
+        announce("自动刷新 · " + formatTime.format(refreshedAt) + latestTime + "（北京时间）");
         empty.textContent = "等待第一条进度记录";
       } catch (error) {
         if (error.message === "rate-limit") {
