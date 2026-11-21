@@ -1,6 +1,6 @@
-import { initGalleries } from './gallery.mjs?v=ad0ec7f577c834f8';
-import { initFolio } from './folio.mjs?v=ad0ec7f577c834f8';
-import { initReadingState } from './reading-state.mjs?v=ad0ec7f577c834f8';
+import { initGalleries } from './gallery.mjs?v=1a039b7fe22b20c2';
+import { initFolio } from './folio.mjs?v=1a039b7fe22b20c2';
+import { initReadingState } from './reading-state.mjs?v=1a039b7fe22b20c2';
 
 const lifetime = new AbortController();
 // Header changes surface without changing document height or intercepting scroll.
@@ -207,21 +207,51 @@ window.addEventListener('pagehide',event=>{if(!event.persisted)lifetime.abort();
 const projectViewerURL=document.querySelector('script[data-project-module]')?.dataset.projectModule;
 if(projectViewerURL){
  let projectModule;
- const load=()=>projectModule ||= import(projectViewerURL).catch(error=>{
-  projectModule=null;
-  throw error;
- });
+ let recoveringImport=false;
+ const load=()=>{
+  if(projectModule)return projectModule;
+  const moduleURL=new URL(projectViewerURL,location.href);
+  if(recoveringImport)moduleURL.searchParams.set('recovery','1');
+  projectModule=import(moduleURL.href).catch(error=>{
+   projectModule=null;
+   recoveringImport=true;
+   throw error;
+  });
+  return projectModule;
+ };
  function whenVisible(elements,mount){
   if(!elements.length)return;
-  const observer=new IntersectionObserver(entries=>{
-   if(!entries.some(entry=>entry.isIntersecting))return;
-   observer.disconnect();
+  const visible=new Set();
+  let pending=false,mounted=false,attempts=0,retryTimer=0;
+  const activate=()=>{
+   if(pending||mounted||attempts>=2||!visible.size||document.hidden||navigator.onLine===false||lifetime.signal.aborted)return;
+   clearTimeout(retryTimer);
+   pending=true;
+   attempts++;
    load().then(module=>{
-    if(!lifetime.signal.aborted)mount(module);
-   }).catch(error=>console.warn('Project scene unavailable; the poster remains available.',error));
+    if(lifetime.signal.aborted)return;
+    mounted=true;
+    observer.disconnect();
+    mount(module);
+   }).catch(error=>{
+    console.warn('Project scene unavailable; the poster remains available.',error);
+    if(attempts<2)retryTimer=setTimeout(activate,1200);
+   }).finally(()=>{pending=false;});
+  };
+  const observer=new IntersectionObserver(entries=>{
+   for(const entry of entries){
+    if(entry.isIntersecting)visible.add(entry.target);
+    else visible.delete(entry.target);
+   }
+   activate();
   });
   for(const element of elements)observer.observe(element);
-  lifetime.signal.addEventListener('abort',()=>observer.disconnect(),{once:true});
+  addEventListener('online',activate,{signal:lifetime.signal});
+  document.addEventListener('visibilitychange',activate,{signal:lifetime.signal});
+  lifetime.signal.addEventListener('abort',()=>{
+   observer.disconnect();
+   clearTimeout(retryTimer);
+  },{once:true});
  }
  for(const figure of document.querySelectorAll('[data-project-art]')){
   whenVisible([figure],module=>module.mountProjectViewer(figure));
