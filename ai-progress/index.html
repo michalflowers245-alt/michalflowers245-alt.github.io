@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="referrer" content="no-referrer">
+  <title>AI 协作进度</title>
+  <style>
+    :root {
+      font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #f6f8f8;
+      color: #162821;
+      font-synthesis: none;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { width: min(54rem, calc(100% - 2rem)); margin: 0 auto; padding: clamp(2rem, 8vw, 5rem) 0; }
+    header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: clamp(2rem, 7vw, 3.25rem); line-height: 1.1; letter-spacing: -.065em; }
+    h2 { font-size: 1.2rem; }
+    a { color: #135944; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid #135944; outline-offset: 4px; }
+    .controls { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .controls a, .controls button { white-space: nowrap; font: inherit; font-size: .95rem; }
+    button { border: 1px solid #c9d6d1; border-radius: .6rem; background: #fff; padding: .48rem .78rem; color: #135944; cursor: pointer; }
+    button:disabled { opacity: .62; cursor: default; }
+    #connection { min-height: 1.5em; margin: .85rem 0 1.4rem; color: #52635b; font-size: .92rem; }
+    .run { padding: clamp(1rem, 4vw, 1.45rem); border: 1px solid #dbe3df; border-radius: 1rem; background: #fff; }
+    .run-heading { display: flex; gap: .7rem 1rem; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: .9rem; }
+    .run-id { display: inline-block; font-size: .82rem; font-weight: 500; color: #52635b; margin-inline-start: .4rem; }
+    .evidence { font-size: .88rem; }
+    .agents { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+    .agent { display: grid; align-content: start; gap: .52rem; padding: 1rem; border: 1px solid #e5ebe8; border-radius: .75rem; background: #f8faf9; }
+    .agent h3 { font-size: .96rem; }
+    .stage { justify-self: start; width: fit-content; border-radius: .4rem; padding: .18rem .5rem; color: #374e45; background: #e7ece9; font-weight: 650; }
+    .stage[data-tone="working"] { color: #1e4a75; background: #e1edf8; }
+    .stage[data-tone="done"] { color: #135944; background: #dcefe3; }
+    .stage[data-tone="error"] { color: #792f28; background: #f7e3df; }
+    .updated { font-size: .78rem; color: #52635b; font-variant-numeric: tabular-nums; }
+    details { margin-top: 1.4rem; }
+    summary { width: fit-content; color: #40534a; cursor: pointer; }
+    #history-runs { display: grid; gap: .65rem; margin-top: .85rem; }
+    .empty { padding: 1.5rem; border: 1px solid #dbe3df; border-radius: 1rem; background: #fff; color: #52635b; }
+    [hidden] { display: none !important; }
+    @media (max-width: 30rem) { .agents { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>AI 协作进度</h1>
+      <div class="controls">
+        <a href="https://github.com/michalflowers245-alt/michalflowers245-alt.github.io/issues/1">GitHub 进度记录</a>
+        <button id="refresh" type="button">立即刷新</button>
+      </div>
+    </header>
+    <p id="connection" role="status" aria-live="polite">正在读取 GitHub…</p>
+    <section id="current" aria-label="最新任务">
+      <p class="empty" id="empty">等待进度记录</p>
+    </section>
+    <details id="history" hidden>
+      <summary id="history-summary">历史任务</summary>
+      <div id="history-runs"></div>
+    </details>
+    <noscript><p>开启 JavaScript 后可自动刷新进度，也可直接查看 GitHub 进度记录。</p></noscript>
+  </main>
+  <script id="initial-comments" type="application/json">[]</script>
+  <script>
+    "use strict";
+
+    const repository = "michalflowers245-alt/michalflowers245-alt.github.io";
+    const publisher = repository.split("/")[0];
+    const issueUrl = "https://github.com/" + repository + "/issues/1";
+    const commentsUrl = "https://api.github.com/repos/" + repository + "/issues/1/comments";
+    const mirrorUrl = "https://raw.githubusercontent.com/" + repository + "/refs/heads/codex/ai-progress/progress.json";
+    const workerNames = ["Grok Bot", "DeepSeek Harness"];
+    const activeStages = new Set(["待派发", "接单", "执行中", "正在生成答复"]);
+    const finalStages = new Set(["未分配", "已返回答复", "执行失败", "已取消", "暂未确认结果"]);
+    const formatTime = new Intl.DateTimeFormat("zh-CN", {
+      timeZone: "Asia/Shanghai",
+      hour12: false,
+      hourCycle: "h23",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+    const connection = document.getElementById("connection");
+    const refreshButton = document.getElementById("refresh");
+    const current = document.getElementById("current");
+    const empty = document.getElementById("empty");
+    const history = document.getElementById("history");
+    const historySummary = document.getElementById("history-summary");
+    const historyRuns = document.getElementById("history-runs");
+
+    const latest = new Map();
+    let renderVersion = "";
+    let latestCommentTime = 0;
+    let fetchInProgress = false;
+    let updateTimer;
+    let restRetryAt = 0;
+    let mirrorRetryAt = 0;
+    let restNextFetchAt = 0;
+    let refreshedAt = 0;
+
+    function getSnapshot(comment) {
+      if (comment.user?.login && comment.user.login.toLowerCase() !== publisher) return null;
+      const prefix = issueUrl + "#issuecomment-";
+      const anchor = comment.html_url?.startsWith(prefix) ? comment.html_url.slice(prefix.length) : "";
+      const commentId = Number.isSafeInteger(comment.id) ? comment.id : Number(anchor);
+      if (!Number.isSafeInteger(commentId) || commentId <= 0) return null;
+      const body = comment.body;
+      if (typeof body !== "string" || !/^<!-- codex-progress:[0-9a-f-]{32,36} -->\r?\n/i.test(body)) return null;
+      const heading = body.match(/^\*\*(连通测试|作品集协作) · `([0-9a-f]{8})`｜[^\r\n]+\*\*\r?$/m);
+      if (!heading) return null;
+
+      const rows = new Map();
+      const tableRow = /^\| (Grok Bot|DeepSeek Harness) \| ([^|\r\n]+) \| (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}|—) \|\r?$/gm;
+      for (const [, name, stage, time] of body.matchAll(tableRow)) {
+        if (!activeStages.has(stage) && !finalStages.has(stage)) return null;
+        const datetime = time === "—" ? "" : time.replace(" ", "T") + "+08:00";
+        if (rows.has(name) || (datetime && !Number.isFinite(Date.parse(datetime)))) return null;
+        rows.set(name, { name, stage, time, datetime });
+      }
+      const updated = Date.parse(comment.updated_at ?? comment.created_at);
+      if (rows.size !== workerNames.length || !Number.isFinite(updated)) return null;
+      return { label: heading[1], id: heading[2], rows, commentId, updated };
+    }
+
+    function absorb(comments) {
+      for (const comment of comments) {
+        const timestamp = Date.parse(comment.updated_at ?? comment.created_at);
+        if (Number.isFinite(timestamp)) latestCommentTime = Math.max(latestCommentTime, timestamp);
+        const snapshot = getSnapshot(comment);
+        if (!snapshot) continue;
+        const previous = latest.get(snapshot.id);
+        if (!previous || snapshot.commentId > previous.commentId ||
+            (snapshot.commentId === previous.commentId && snapshot.updated > previous.updated)) {
+          latest.set(snapshot.id, snapshot);
+        }
+      }
+    }
+
+    function recentRuns() {
+      return [...latest.values()].sort((a, b) => b.commentId - a.commentId);
+    }
+
+    function element(tag, text = "", className = "") {
+      const node = document.createElement(tag);
+      node.textContent = text;
+      if (className) node.className = className;
+      return node;
+    }
+
+    function renderRun(snapshot) {
+      const section = element("article", "", "run");
+      const heading = element("div", "", "run-heading");
+      const title = element("h2", snapshot.label);
+      title.append(element("code", snapshot.id, "run-id"));
+      const proof = element("a", "进度评论", "evidence");
+      proof.href = issueUrl + "#issuecomment-" + snapshot.commentId;
+      heading.append(title, proof);
+
+      const agents = element("div", "", "agents");
+      for (const name of workerNames) {
+        const worker = snapshot.rows.get(name);
+        const agent = element("section", "", "agent");
+        const stage = element("p", worker.stage, "stage");
+        if (activeStages.has(worker.stage)) stage.dataset.tone = "working";
+        if (worker.stage === "已返回答复") stage.dataset.tone = "done";
+        if (worker.stage === "执行失败" || worker.stage === "暂未确认结果") stage.dataset.tone = "error";
+        const time = worker.datetime
+          ? element("time", worker.time + " 北京时间", "updated")
+          : element("p", "—", "updated");
+        if (worker.datetime) time.dateTime = worker.datetime;
+        agent.append(element("h3", worker.name), stage, time);
+        agents.append(agent);
+      }
+      section.append(heading, agents);
+      return section;
+    }
+
+    function render() {
+      const runs = recentRuns();
+      const version = runs.map(run => run.commentId + ":" + run.updated).join(",");
+      if (version === renderVersion) return;
+      renderVersion = version;
+      current.replaceChildren(runs.length ? renderRun(runs[0]) : empty);
+      history.hidden = runs.length <= 1;
+      historySummary.textContent = "历史任务（" + Math.max(0, runs.length - 1) + "）";
+      historyRuns.replaceChildren(...runs.slice(1).map(renderRun));
+    }
+
+    function announce(message) {
+      if (connection.textContent !== message) connection.textContent = message;
+    }
+
+    function remainingNumber(headers, name) {
+      const value = headers.get(name);
+      return value === null ? NaN : Number(value);
+    }
+
+    function updateRateWindow(response) {
+      const headers = response.headers;
+      const remaining = remainingNumber(headers, "x-ratelimit-remaining");
+      const reset = remainingNumber(headers, "x-ratelimit-reset") * 1000;
+      const retrySeconds = remainingNumber(headers, "retry-after");
+      restNextFetchAt = remaining > 0 && remaining < 12 && reset > Date.now()
+        ? Date.now() + Math.ceil((reset - Date.now()) / remaining)
+        : 0;
+      if (remaining === 0) restRetryAt = Math.max(Date.now() + 60_000, (reset || 0) + 1_000);
+      if (response.status === 429 || (response.status === 403 && remaining !== 0)) {
+        restRetryAt = Math.max(restRetryAt, Date.now() + Math.max(retrySeconds || 0, 60) * 1000);
+      }
+    }
+
+    function nextPage(headers) {
+      const link = headers.get("link")?.match(/<([^>]+)>\s*;\s*rel="next"/);
+      if (!link) return null;
+      const target = new URL(link[1], commentsUrl);
+      const source = new URL(commentsUrl);
+      // GitHub pagination can switch from the owner/repo path to /repositories/{id}.
+      const paginatedPath = /^\/repositories\/\d+\/issues\/1\/comments$/;
+      return target.origin === source.origin && (target.pathname === source.pathname || paginatedPath.test(target.pathname))
+        ? target
+        : null;
+    }
+
+    async function readRest() {
+      const endpoint = new URL(commentsUrl);
+      endpoint.searchParams.set("per_page", "100");
+      if (latestCommentTime) {
+        const since = new Date(latestCommentTime - 1_000).toISOString().replace(/\.\d{3}Z$/, "Z");
+        endpoint.searchParams.set("since", since);
+      }
+
+      const comments = [];
+      for (let page = endpoint; page; ) {
+        const response = await fetch(page, {
+          cache: "no-store",
+          credentials: "omit",
+          signal: AbortSignal.timeout(12_000),
+        });
+        updateRateWindow(response);
+        if (!response.ok) {
+          throw new Error(restRetryAt > Date.now() ? "rate-limit" : "network");
+        }
+        comments.push(...await response.json());
+        page = nextPage(response.headers);
+        if (page && restRetryAt > Date.now()) throw new Error("rate-limit");
+      }
+      return comments;
+    }
+
+    async function readMirror() {
+      const endpoint = new URL(mirrorUrl);
+      endpoint.searchParams.set("t", String(Math.floor(Date.now() / 10_000)));
+      const response = await fetch(endpoint, {
+        cache: "no-store",
+        credentials: "omit",
+        signal: AbortSignal.timeout(8_000),
+      });
+      if (!response.ok) {
+        mirrorRetryAt = Date.now() + 120_000;
+        throw new Error("network");
+      }
+      const payload = await response.json();
+      const comments = Array.isArray(payload) ? payload : payload.comments;
+      if (!Array.isArray(comments)) throw new Error("network");
+      return comments;
+    }
+
+    function interval() {
+      return document.hidden ? 60_000 : 12_000;
+    }
+
+    function schedule() {
+      clearTimeout(updateTimer);
+      const delay = interval();
+      const restWait = Math.max(0, Math.max(restRetryAt, restNextFetchAt) - Date.now());
+      const mirrorWait = Math.max(0, mirrorRetryAt - Date.now());
+      updateTimer = setTimeout(refresh, Math.max(delay, Math.min(restWait, mirrorWait)));
+    }
+
+    async function refresh() {
+      if (fetchInProgress) return;
+      clearTimeout(updateTimer);
+      fetchInProgress = true;
+      refreshButton.disabled = true;
+      let comments;
+      try {
+        if (Date.now() >= mirrorRetryAt) {
+          try {
+            comments = await readMirror();
+          } catch {
+            mirrorRetryAt = Date.now() + 120_000;
+          }
+        }
+        if (!comments && Date.now() >= Math.max(restRetryAt, restNextFetchAt)) comments = await readRest();
+        if (!comments) throw new Error(Math.max(restRetryAt, restNextFetchAt) > Date.now() ? "rate-limit" : "network");
+
+        absorb(comments);
+        render();
+        refreshedAt = Date.now();
+        announce("自动刷新已开启 · " + formatTime.format(refreshedAt) + " 北京时间");
+        empty.textContent = "等待第一条进度记录";
+      } catch (error) {
+        if (error.message === "rate-limit") {
+          announce("GitHub API 读取受限 · " + formatTime.format(Math.max(restRetryAt, restNextFetchAt)) + " 后可重试（北京时间）");
+        } else {
+          announce("暂时无法读取 GitHub · 将自动重试");
+        }
+        if (!latest.size) empty.textContent = "暂未读到进度，可打开 GitHub 进度记录查看";
+      } finally {
+        fetchInProgress = false;
+        refreshButton.disabled = false;
+        schedule();
+      }
+    }
+
+    try {
+      absorb(JSON.parse(document.getElementById("initial-comments").textContent));
+      render();
+    } catch {
+      // The live sources can still supply records if the initial snapshot is unavailable.
+    }
+    refreshButton.addEventListener("click", refresh);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden && Date.now() - refreshedAt > 12_000) refresh();
+      else schedule();
+    });
+    window.addEventListener("online", refresh);
+    refresh();
+  </script>
+</body>
+</html>
