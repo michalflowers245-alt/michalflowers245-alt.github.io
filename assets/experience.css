@@ -733,3 +733,35 @@ main[tabindex]:focus,.cdg-category[tabindex]:focus{outline:none}
 }
 
 button[data-copy-email]{min-width:104px}
+
+/* Responsive refinement — 2026-11-28. Keep desktop composition and 3D controls unchanged. */
+@media (max-width:800px){
+  .cosmic-hero{--cosmic-stage-height:clamp(200px,52vw,360px)}
+  .cosmic-intro{--intro-padding:clamp(20px,5vw,32px)}
+  .cosmic-intro .cosmic-statement{line-height:1.72}
+  .cosmic-intro .hero-actions{margin-top:18px}
+}
+@media (max-width:600px){
+  .cdg-category .cdg-spread>.cdg-project:last-child:nth-child(odd) .cdg-cover,
+  .cdg-project .cdg-cover{aspect-ratio:16/10}
+  .cdg-project .professional-card-copy{padding:16px 16px 0;gap:7px}
+  .cdg-project .card-parent{padding-left:16px}
+  .cdg-category .cdg-spread,.professional-group[data-count] .cdg-spread{gap:26px}
+  .cdg-category.professional-group,.cdg-category.work-group{margin-bottom:34px}
+}
+@media (max-width:380px){
+  .cdg-index{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cdg-index a{min-height:48px;padding:10px 8px;font-size:13px}
+}
+@media (min-width:681px) and (max-width:780px){
+  .professional-project-grid,.project-grid,.professional-group[data-count] .professional-project-grid,
+  .cdg-category .cdg-spread{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 22px}
+  .cdg-category .cdg-spread>.cdg-project:last-child:nth-child(odd){grid-column:auto}
+  .cdg-category .cdg-spread>.cdg-project:last-child:nth-child(odd) .cdg-cover{aspect-ratio:4/3;border:0;border-radius:5px 5px 0 0}
+  .cdg-project .professional-card-copy{padding:16px 14px 0}
+  .cdg-project h3{font-size:20px;line-height:1.5;gap:8px}
+  .cdg-project .project-summary{font-size:15px;line-height:1.75}
+  .cdg-project-meta{font-size:13px;gap:4px 8px}
+  .cdg-project .card-parent{padding-left:14px;font-size:12px}
+  .cdg-category-heading{padding:0 0 16px}
+}
